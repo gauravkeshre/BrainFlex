@@ -42,5 +42,5 @@ struct GameConstants {
     static var FlipAnimationDuration: NSTimeInterval = 0.24
     
     /// Game
-    static var ObservationTime: NSTimeInterval = 15 // in seconds. The player will be given 15 mins to observe the board.
+    static var ObservationTime: NSTimeInterval = 5 // in seconds. The player will be given 15 mins to observe the board.
 }

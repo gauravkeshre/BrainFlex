@@ -122,7 +122,7 @@ extension GameViewController{
     }
     
     func timerTick(timer: NSTimer){
-        guard numberOfTicks < GameConstants.ObservationTime else{
+        guard numberOfTicks < GameConstants.ObservationTime - 1 else{
             self.stopTimer()
             self.closeAllTiles()
             self.lblTimer?.hidden = true
