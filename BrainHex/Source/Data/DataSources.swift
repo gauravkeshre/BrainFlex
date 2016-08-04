@@ -10,9 +10,10 @@ import Foundation
 
 class OfflineDataSource: DataSourceProtocol{
     func fetchPhotos(tags: [String], onCompletion block: CompletionCallback?) {
-        var imageArray = [String]()
+        var imageArray = [GameImage]()
         for i in 0...GameConstants.MatrixSize - 1  {
-            imageArray.append("\(i)")
+            let img = GameImage(pathOrName: "\(i)", isLocal: true, uuid: NSUUID().UUIDString)
+            imageArray.append(img)
         }
         block?(status: true, result: imageArray)
         

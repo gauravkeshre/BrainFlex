@@ -13,7 +13,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var lblTimer: UILabel!
     
-    private var imageArray =  [String]()
+    private var imageArray =  [GameImage]()
     private var timer: NSTimer?
     private var numberOfTicks: NSTimeInterval = 0
     

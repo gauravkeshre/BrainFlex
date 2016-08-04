@@ -21,6 +21,7 @@ class GameTileCell: UICollectionViewCell, DataReceiver {
     
     var state : GameTileState = .closed
     weak var delegate: GameTileCellDelegate?
+    var gameData: GameImage!
     
     //MARK:- LIfeCycle methods
     override func awakeFromNib() {
@@ -52,9 +53,16 @@ class GameTileCell: UICollectionViewCell, DataReceiver {
     }
     
     //MARK:- DataReceiver methods
-    func setData(data: String, info: GameTileState){
-        /// set url
-        self.imgContent.image = UIImage(named: data)!
+    func setData(data: GameImage, info: GameTileState){
+        /// set model
+        self.gameData = data
+        
+        /// Set image
+        if let img = UIImage(named: data.pathOrName) where data.isLocal{
+            self.imgContent.image = img
+        }else if let img = UIImage(contentsOfFile:data.pathOrName) {
+            self.imgContent.image = img
+        }
         
         ///initial setup
         self.state = info

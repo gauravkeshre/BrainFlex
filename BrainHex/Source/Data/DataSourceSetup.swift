@@ -10,7 +10,7 @@ import Foundation
 
 // MARK:- Callback Typealias
 
-public typealias CompletionCallback    = (status: Bool, result: [String])	-> ()
+typealias CompletionCallback    = (status: Bool, result: [GameImage])	-> ()
 
 
 /// This method will decide which data source to used based on internet connection

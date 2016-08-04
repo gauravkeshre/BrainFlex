@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F4BE20D81D53D20F00547BC7 /* DataSourceSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE20D71D53D20F00547BC7 /* DataSourceSetup.swift */; };
 		F4BE20DA1D53D21F00547BC7 /* DataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE20D91D53D21F00547BC7 /* DataSources.swift */; };
+		F4BE20DC1D53D5CB00547BC7 /* GameImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE20DB1D53D5CB00547BC7 /* GameImage.swift */; };
 		F4F74F4D1D526DDF00A09BCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F74F4C1D526DDF00A09BCB /* AppDelegate.swift */; };
 		F4F74F521D526DDF00A09BCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4F74F501D526DDF00A09BCB /* Main.storyboard */; };
 		F4F74F541D526DDF00A09BCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4F74F531D526DDF00A09BCB /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		F4BE20D71D53D20F00547BC7 /* DataSourceSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceSetup.swift; sourceTree = "<group>"; };
 		F4BE20D91D53D21F00547BC7 /* DataSources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSources.swift; sourceTree = "<group>"; };
+		F4BE20DB1D53D5CB00547BC7 /* GameImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameImage.swift; sourceTree = "<group>"; };
 		F4F74F491D526DDF00A09BCB /* BrainHex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainHex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4F74F4C1D526DDF00A09BCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4F74F511D526DDF00A09BCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,13 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F4BE20D61D53D20F00547BC7 /* Data */ = {
+		F4BE20D61D53D20F00547BC7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				F4BE20D71D53D20F00547BC7 /* DataSourceSetup.swift */,
 				F4BE20D91D53D21F00547BC7 /* DataSources.swift */,
+				F4BE20DB1D53D5CB00547BC7 /* GameImage.swift */,
 			);
-			name = Data;
+			name = Model;
 			path = Source/Data;
 			sourceTree = "<group>";
 		};
@@ -86,7 +89,7 @@
 		F4F74F601D52715000A09BCB /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				F4BE20D61D53D20F00547BC7 /* Data */,
+				F4BE20D61D53D20F00547BC7 /* Model */,
 				F4F74F611D52752C00A09BCB /* Constants.swift */,
 				F4F74F651D52899F00A09BCB /* Protocols.swift */,
 				F4F74F4C1D526DDF00A09BCB /* AppDelegate.swift */,
@@ -174,6 +177,7 @@
 				F4F74F641D52814D00A09BCB /* GameTileCell.swift in Sources */,
 				F4F74F4D1D526DDF00A09BCB /* AppDelegate.swift in Sources */,
 				F4F74F621D52752C00A09BCB /* Constants.swift in Sources */,
+				F4BE20DC1D53D5CB00547BC7 /* GameImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
