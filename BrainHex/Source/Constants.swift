@@ -30,3 +30,17 @@ enum HxFlickr: String{
 }
 
 
+
+
+
+
+struct GameConstants {
+    /// Board
+    static var MatrixSize: Int = 9
+    
+    ///Cosmetics
+    static var FlipAnimationDuration: NSTimeInterval = 0.24
+    
+    /// Game
+    static var ObservationTime: NSTimeInterval = 15 // in seconds. The player will be given 15 mins to observe the board.
+}

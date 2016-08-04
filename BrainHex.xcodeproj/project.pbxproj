@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F4BE20D81D53D20F00547BC7 /* DataSourceSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE20D71D53D20F00547BC7 /* DataSourceSetup.swift */; };
+		F4BE20DA1D53D21F00547BC7 /* DataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE20D91D53D21F00547BC7 /* DataSources.swift */; };
 		F4F74F4D1D526DDF00A09BCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F74F4C1D526DDF00A09BCB /* AppDelegate.swift */; };
 		F4F74F521D526DDF00A09BCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4F74F501D526DDF00A09BCB /* Main.storyboard */; };
 		F4F74F541D526DDF00A09BCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4F74F531D526DDF00A09BCB /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F4BE20D71D53D20F00547BC7 /* DataSourceSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceSetup.swift; sourceTree = "<group>"; };
+		F4BE20D91D53D21F00547BC7 /* DataSources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSources.swift; sourceTree = "<group>"; };
 		F4F74F491D526DDF00A09BCB /* BrainHex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainHex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4F74F4C1D526DDF00A09BCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4F74F511D526DDF00A09BCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -41,6 +45,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F4BE20D61D53D20F00547BC7 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F4BE20D71D53D20F00547BC7 /* DataSourceSetup.swift */,
+				F4BE20D91D53D21F00547BC7 /* DataSources.swift */,
+			);
+			name = Data;
+			path = Source/Data;
+			sourceTree = "<group>";
+		};
 		F4F74F401D526DDF00A09BCB = {
 			isa = PBXGroup;
 			children = (
@@ -72,11 +86,12 @@
 		F4F74F601D52715000A09BCB /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F4BE20D61D53D20F00547BC7 /* Data */,
+				F4F74F611D52752C00A09BCB /* Constants.swift */,
+				F4F74F651D52899F00A09BCB /* Protocols.swift */,
 				F4F74F4C1D526DDF00A09BCB /* AppDelegate.swift */,
 				F4F74F5E1D52714C00A09BCB /* GameViewController.swift */,
-				F4F74F611D52752C00A09BCB /* Constants.swift */,
 				F4F74F631D52814D00A09BCB /* GameTileCell.swift */,
-				F4F74F651D52899F00A09BCB /* Protocols.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -152,8 +167,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4BE20D81D53D20F00547BC7 /* DataSourceSetup.swift in Sources */,
 				F4F74F661D52899F00A09BCB /* Protocols.swift in Sources */,
 				F4F74F5F1D52714C00A09BCB /* GameViewController.swift in Sources */,
+				F4BE20DA1D53D21F00547BC7 /* DataSources.swift in Sources */,
 				F4F74F641D52814D00A09BCB /* GameTileCell.swift in Sources */,
 				F4F74F4D1D526DDF00A09BCB /* AppDelegate.swift in Sources */,
 				F4F74F621D52752C00A09BCB /* Constants.swift in Sources */,
