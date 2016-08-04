@@ -45,7 +45,7 @@ class GameTileCell: UICollectionViewCell, DataReceiver {
             UIView.transitionFromView(self.imgCover, toView: self.imgContent, duration: GameConstants.FlipAnimationDuration, options: [.TransitionFlipFromRight, .ShowHideTransitionViews], completion: onCompletion)
             break
         case .closed:
-            UIView.transitionFromView(self.imgContent, toView: self.imgCover, duration: GameConstants.FlipAnimationDuration, options: [.TransitionFlipFromLeft, .ShowHideTransitionViews], completion: onCompletion)
+            UIView.transitionFromView(self.imgContent, toView: self.imgCover, duration: GameConstants.FlipAnimationDuration/2, options: [.TransitionFlipFromLeft, .ShowHideTransitionViews], completion: onCompletion)
             
             break
         }
