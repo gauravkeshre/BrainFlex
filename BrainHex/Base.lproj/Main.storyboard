@@ -113,6 +113,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="collectionView" destination="5rV-jU-JHB" id="Pk8-mV-Yti"/>
+                        <outlet property="lblTimer" destination="ktw-hh-WlO" id="pQe-iQ-Xy0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

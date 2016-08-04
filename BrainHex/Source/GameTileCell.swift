@@ -13,7 +13,7 @@ enum GameTileState{
     case closed
 }
 
-let FlipAnimationDuration: NSTimeInterval = 0.24
+
 class GameTileCell: UICollectionViewCell, DataReceiver {
     
     @IBOutlet var imgCover: UIImageView! ///the backside of each tile
@@ -42,10 +42,10 @@ class GameTileCell: UICollectionViewCell, DataReceiver {
         self.delegate?.gameCellBeginFlipAnimation(self);
         switch state {
         case .open:
-            UIView.transitionFromView(self.imgCover, toView: self.imgContent, duration: FlipAnimationDuration, options: [.TransitionFlipFromRight, .ShowHideTransitionViews], completion: onCompletion)
+            UIView.transitionFromView(self.imgCover, toView: self.imgContent, duration: GameConstants.FlipAnimationDuration, options: [.TransitionFlipFromRight, .ShowHideTransitionViews], completion: onCompletion)
             break
         case .closed:
-            UIView.transitionFromView(self.imgContent, toView: self.imgCover, duration: FlipAnimationDuration, options: [.TransitionFlipFromLeft, .ShowHideTransitionViews], completion: onCompletion)
+            UIView.transitionFromView(self.imgContent, toView: self.imgCover, duration: GameConstants.FlipAnimationDuration, options: [.TransitionFlipFromLeft, .ShowHideTransitionViews], completion: onCompletion)
             
             break
         }
