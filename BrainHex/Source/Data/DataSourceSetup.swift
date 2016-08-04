@@ -10,7 +10,7 @@ import Foundation
 
 // MARK:- Callback Typealias
 
-public typealias CompletionCallback    = (status: Bool, result: AnyObject?)	-> ()
+public typealias CompletionCallback    = (status: Bool, result: [String])	-> ()
 
 
 /// This method will decide which data source to used based on internet connection
@@ -40,6 +40,6 @@ func isConnectedToInternet() -> Bool
 
 protocol DataSourceProtocol {
     func fetchPhotos(tags:[String],
-                     successCallback: CompletionCallback?)
+                     onCompletion block: CompletionCallback?)
     
 }
