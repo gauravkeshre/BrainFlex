@@ -19,24 +19,18 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for i in 0...GameConstants.MatrixSize - 1  {
-            imageArray.append("\(i)")
-        }
-        self.collectionView.reloadData()
         self.startTimer()
+        ActiveDataSource().fetchPhotos(["dog", "planes"]) { (status, result) in
+            if status{
+                self.imageArray.appendContentsOf(result)
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     //MARK:- IBAction methods
     @IBAction func handleRefreshButton(sender: AnyObject) {
         self.startTimer()
-//        
-//        for cell in self.collectionView.visibleCells() as! [GameTileCell] {
-//            if cell.state == .open{
-//                cell.flipCardTo(.closed)
-//            }else{
-//                cell.flipCardTo(.open)
-//            }
-//        }
     }
 }
 
