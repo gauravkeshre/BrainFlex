@@ -13,3 +13,9 @@ protocol DataReceiver {
     associatedtype AnotherDataType
     func setData(data: DataType, info: AnotherDataType)
 }
+
+protocol GameTileCellDelegate: class {
+    func gameCell(cell: GameTileCell, willToggleStateTo state: GameTileState)
+    func gameCellBeginFlipAnimation(cell: GameTileCell)
+    func gameCellEndFlipAnimation(cell: GameTileCell)
+}

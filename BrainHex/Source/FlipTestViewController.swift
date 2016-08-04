@@ -15,9 +15,9 @@ class FlipTestViewController: UIViewController {
     //MARK:- IBAction methods
     
     @IBAction func handleFlipButton(sender: AnyObject) {
-                UIView.transitionFromView(self.fImageBack, toView: self.fImageViewFront, duration: 2, options: [.Repeat, .TransitionFlipFromRight, .ShowHideTransitionViews, .TransitionFlipFromRight], completion: nil)
+        UIView.transitionFromView(self.fImageBack, toView: self.fImageViewFront, duration: 2, options: [.Repeat, .TransitionFlipFromRight, .ShowHideTransitionViews, .TransitionFlipFromRight], completion: nil)
         
-//        self.justFlip()
+        //        self.justFlip()
         //
         //        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation.y")
         //        rotateAnimation.repeatCount = 15
@@ -40,9 +40,9 @@ class FlipTestViewController: UIViewController {
     func justFlip() {
         let transitionOptions: UIViewAnimationOptions = [.TransitionFlipFromRight, .ShowHideTransitionViews]
         
-//        UIView.transitionWithView(self.fImageBack, duration: 1.0, options: transitionOptions, animations: {
-//            self.fImageBack.hidden = true
-//            }, completion: nil)
+        //        UIView.transitionWithView(self.fImageBack, duration: 1.0, options: transitionOptions, animations: {
+        //            self.fImageBack.hidden = true
+        //            }, completion: nil)
         
         UIView.transitionWithView(self.fImageViewFront, duration: 1.0, options: transitionOptions, animations: {
             self.fImageViewFront.hidden = true

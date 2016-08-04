@@ -8,41 +8,51 @@
 
 import UIKit
 
-enum TileState{
+enum GameTileState{
     case open
     case closed
 }
 
+let FlipAnimationDuration: NSTimeInterval = 0.24
 class GameTileCell: UICollectionViewCell, DataReceiver {
     
     @IBOutlet var imgCover: UIImageView! ///the backside of each tile
     @IBOutlet var imgContent: UIImageView! /// the image pulled from Flickr
     
-    var state : TileState = .closed
+    var state : GameTileState = .closed
+    weak var delegate: GameTileCellDelegate?
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
+    //MARK:- LIfeCycle methods
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.layer.cornerRadius = 2.5 // subtle cleaning up
     }
+    
     //MARK:- UI methods
-    func flipCardTo(state: TileState){
+    func flipCardTo(state: GameTileState){
         
+        guard state != self.state else{
+            return // ignore the flip
+        }
         let onCompletion: ((Bool) -> Void)? = { (finished) in
             self.state = state
+            self.delegate?.gameCellEndFlipAnimation(self)
         }
         
+        self.delegate?.gameCellBeginFlipAnimation(self);
         switch state {
         case .open:
-            UIView.transitionFromView(self.imgCover, toView: self.imgContent, duration: 0.5, options: [.TransitionFlipFromRight, .ShowHideTransitionViews], completion: onCompletion)
+            UIView.transitionFromView(self.imgCover, toView: self.imgContent, duration: FlipAnimationDuration, options: [.TransitionFlipFromRight, .ShowHideTransitionViews], completion: onCompletion)
             break
         case .closed:
-            UIView.transitionFromView(self.imgContent, toView: self.imgCover, duration: 0.5, options: [.TransitionFlipFromLeft, .ShowHideTransitionViews], completion: onCompletion)
+            UIView.transitionFromView(self.imgContent, toView: self.imgCover, duration: FlipAnimationDuration, options: [.TransitionFlipFromLeft, .ShowHideTransitionViews], completion: onCompletion)
             
             break
         }
     }
-    //MARK:- DataReceiver methods
     
-    func setData(data: String, info: TileState){
+    //MARK:- DataReceiver methods
+    func setData(data: String, info: GameTileState){
         /// set url
         self.imgContent.image = UIImage(named: data)!
         
@@ -53,7 +63,6 @@ class GameTileCell: UICollectionViewCell, DataReceiver {
         }else{
             self.contentView.bringSubviewToFront(self.imgCover)
         }
-        
     }
     
 }

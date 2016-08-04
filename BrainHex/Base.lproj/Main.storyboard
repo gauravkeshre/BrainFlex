@@ -21,6 +21,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5rV-jU-JHB">
                                 <rect key="frame" x="37" y="84" width="300" height="300"/>
                                 <color key="backgroundColor" red="0.35063155969999998" green="0.1384810997" blue="0.23228749630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5rV-jU-JHB" secondAttribute="height" multiplier="1:1" id="HsH-ll-NIa"/>
                                     <constraint firstAttribute="height" priority="999" constant="300" id="onz-Ta-Rno"/>
@@ -69,6 +70,7 @@
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="rMR-qw-5p7"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="hqw-NU-JY3"/>
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a23-cZ-Rdy">
