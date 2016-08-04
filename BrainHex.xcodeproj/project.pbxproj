@@ -10,6 +10,8 @@
 		F4BE20D81D53D20F00547BC7 /* DataSourceSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE20D71D53D20F00547BC7 /* DataSourceSetup.swift */; };
 		F4BE20DA1D53D21F00547BC7 /* DataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE20D91D53D21F00547BC7 /* DataSources.swift */; };
 		F4BE20DC1D53D5CB00547BC7 /* GameImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE20DB1D53D5CB00547BC7 /* GameImage.swift */; };
+		F4BE20DE1D53E81900547BC7 /* GameViewController+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE20DD1D53E81900547BC7 /* GameViewController+Shake.swift */; };
+		F4BE20E01D53E8E600547BC7 /* GameViewController+Cosmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE20DF1D53E8E600547BC7 /* GameViewController+Cosmetic.swift */; };
 		F4F74F4D1D526DDF00A09BCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F74F4C1D526DDF00A09BCB /* AppDelegate.swift */; };
 		F4F74F521D526DDF00A09BCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4F74F501D526DDF00A09BCB /* Main.storyboard */; };
 		F4F74F541D526DDF00A09BCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4F74F531D526DDF00A09BCB /* Assets.xcassets */; };
@@ -24,6 +26,8 @@
 		F4BE20D71D53D20F00547BC7 /* DataSourceSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceSetup.swift; sourceTree = "<group>"; };
 		F4BE20D91D53D21F00547BC7 /* DataSources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSources.swift; sourceTree = "<group>"; };
 		F4BE20DB1D53D5CB00547BC7 /* GameImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameImage.swift; sourceTree = "<group>"; };
+		F4BE20DD1D53E81900547BC7 /* GameViewController+Shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GameViewController+Shake.swift"; path = "Source/GameViewController+Shake.swift"; sourceTree = "<group>"; };
+		F4BE20DF1D53E8E600547BC7 /* GameViewController+Cosmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GameViewController+Cosmetic.swift"; path = "Source/GameViewController+Cosmetic.swift"; sourceTree = "<group>"; };
 		F4F74F491D526DDF00A09BCB /* BrainHex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainHex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4F74F4C1D526DDF00A09BCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4F74F511D526DDF00A09BCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 				F4F74F651D52899F00A09BCB /* Protocols.swift */,
 				F4F74F4C1D526DDF00A09BCB /* AppDelegate.swift */,
 				F4F74F5E1D52714C00A09BCB /* GameViewController.swift */,
+				F4BE20DD1D53E81900547BC7 /* GameViewController+Shake.swift */,
+				F4BE20DF1D53E8E600547BC7 /* GameViewController+Cosmetic.swift */,
 				F4F74F631D52814D00A09BCB /* GameTileCell.swift */,
 			);
 			name = Source;
@@ -178,6 +184,8 @@
 				F4F74F4D1D526DDF00A09BCB /* AppDelegate.swift in Sources */,
 				F4F74F621D52752C00A09BCB /* Constants.swift in Sources */,
 				F4BE20DC1D53D5CB00547BC7 /* GameImage.swift in Sources */,
+				F4BE20DE1D53E81900547BC7 /* GameViewController+Shake.swift in Sources */,
+				F4BE20E01D53E8E600547BC7 /* GameViewController+Cosmetic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

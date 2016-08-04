@@ -37,11 +37,20 @@
                                         </connections>
                                     </button>
                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="cardBack" translatesAutoresizingMaskIntoConstraints="NO" id="Bx6-Y0-Mmk">
-                                        <rect key="frame" x="147.5" y="4" width="80" height="80"/>
+                                        <rect key="frame" x="154.5" y="4" width="66" height="66"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Bx6-Y0-Mmk" secondAttribute="height" multiplier="1:1" id="ig1-P2-BNQ"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Or shake to Restart the game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHe-g2-Zbu">
+                                        <rect key="frame" x="152" y="72" width="71" height="12"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="12" id="Uce-Aa-bxS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" red="1" green="0.77161912310000003" blue="0.44905618800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.50944570135746603" green="0.1765662343503562" blue="0.33034823515411277" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -54,10 +63,12 @@
                                     <constraint firstAttribute="height" constant="88" id="atg-8N-gbX"/>
                                     <constraint firstItem="ktw-hh-WlO" firstAttribute="centerY" secondItem="a23-cZ-Rdy" secondAttribute="centerY" id="d8Q-6I-u8O"/>
                                     <constraint firstItem="ktw-hh-WlO" firstAttribute="top" secondItem="a23-cZ-Rdy" secondAttribute="top" constant="10" id="hVH-d3-kvS"/>
+                                    <constraint firstItem="sHe-g2-Zbu" firstAttribute="top" secondItem="Bx6-Y0-Mmk" secondAttribute="bottom" constant="2" id="mHJ-Me-UK4"/>
                                     <constraint firstItem="ktw-hh-WlO" firstAttribute="centerX" secondItem="a23-cZ-Rdy" secondAttribute="centerX" id="nOh-p8-7dR"/>
                                     <constraint firstAttribute="trailing" secondItem="ERA-pb-zpL" secondAttribute="trailing" id="nfL-Ir-T9T"/>
-                                    <constraint firstAttribute="bottom" secondItem="Bx6-Y0-Mmk" secondAttribute="bottom" constant="4" id="sfE-Nv-YRb"/>
+                                    <constraint firstItem="sHe-g2-Zbu" firstAttribute="centerX" secondItem="a23-cZ-Rdy" secondAttribute="centerX" id="pHh-bd-0L4"/>
                                     <constraint firstItem="Bx6-Y0-Mmk" firstAttribute="centerX" secondItem="a23-cZ-Rdy" secondAttribute="centerX" id="vIg-f5-O8a"/>
+                                    <constraint firstAttribute="bottom" secondItem="sHe-g2-Zbu" secondAttribute="bottom" constant="4" id="y8A-he-WxR"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5rV-jU-JHB">
@@ -134,6 +145,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="bottomBarHeightConstraint" destination="atg-8N-gbX" id="dGX-8M-HFV"/>

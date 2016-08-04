@@ -39,6 +39,7 @@ func isConnectedToInternet() -> Bool
 //MARK:- Protocol methods
 
 protocol DataSourceProtocol {
+    
     func fetchPhotos(tags:[String],
                      onCompletion block: CompletionCallback?)
     
