@@ -56,7 +56,7 @@ extension GameViewController: UICollectionViewDataSource, UICollectionViewDelega
             let score = GameConstants.MatrixSize - self.guessedIPs.count
             let alert = UIAlertController(title: "Congratulations! You Won 🎉", message: "Yes this is the right match. Your score is \(score) Points", preferredStyle: .Alert)
             
-            let action = UIAlertAction(title: "Replay", style: .Default, handler: { (action) in
+            let action = UIAlertAction(title: "Play again 💙", style: .Default, handler: { (action) in
                 self.handleRefreshButton(action)
             })
             alert.addAction(action)
@@ -71,6 +71,11 @@ extension GameViewController: UICollectionViewDataSource, UICollectionViewDelega
     internal func closeAllTiles(){
         for cellInLoop in self.collectionView.visibleCells() as! [GameTileCell] {
             cellInLoop.flipCardTo(.closed)
+        }
+    }
+    internal func openAllTiles(){
+        for cellInLoop in self.collectionView.visibleCells() as! [GameTileCell] {
+            cellInLoop.flipCardTo(.open)
         }
     }
     

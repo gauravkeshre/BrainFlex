@@ -37,13 +37,13 @@
                                         </connections>
                                     </button>
                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="cardBack" translatesAutoresizingMaskIntoConstraints="NO" id="Bx6-Y0-Mmk">
-                                        <rect key="frame" x="154.5" y="4" width="66" height="66"/>
+                                        <rect key="frame" x="154" y="4" width="66" height="66"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Bx6-Y0-Mmk" secondAttribute="height" multiplier="1:1" id="ig1-P2-BNQ"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Or shake to Restart the game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHe-g2-Zbu">
-                                        <rect key="frame" x="152" y="72" width="71" height="12"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or shake to Restart the game 📳" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHe-g2-Zbu">
+                                        <rect key="frame" x="102" y="72" width="172" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="Uce-Aa-bxS"/>
                                         </constraints>

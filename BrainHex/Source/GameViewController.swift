@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
     var numberOfTicks: NSTimeInterval = 0
     var randomImage: GameImage!
     var imageArray   =  [GameImage]()
-
+    
     var guessedIPs   =  [NSIndexPath](){
         didSet{
             if self.imageArray.count > 0 && self.guessedIPs.count == imageArray.count{
@@ -36,7 +36,7 @@ class GameViewController: UIViewController {
             }
         }
     }
-
+    
     var gameMode: GameMode = .observing{
         didSet{
             self.btnReplay?.hidden = (self.gameMode != .ended)
@@ -76,7 +76,7 @@ class GameViewController: UIViewController {
     @IBAction func handleRefreshButton(sender: AnyObject?) {
         self.lblTimer?.text = "\(Int(GameConstants.ObservationTime))"
         self.numberOfTicks = 0
-        self.closeAllTiles()
+        self.openAllTiles()
         self.gameMode = .observing
         self.guessedIPs.removeAll()
         self.startTimer()
@@ -84,7 +84,7 @@ class GameViewController: UIViewController {
 }
 
 
-
+//MARK:- Timer methods
 extension GameViewController{
     
     private func startTimer(){
