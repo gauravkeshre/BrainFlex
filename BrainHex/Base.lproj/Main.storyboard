@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MgB-U4-VAl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zXd-ra-w2p">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -159,10 +159,10 @@
             </objects>
             <point key="canvasLocation" x="2052.5" y="247.5"/>
         </scene>
-        <!--Flip Test View Controller-->
+        <!--File SyncVC-->
         <scene sceneID="bgk-4N-EWl">
             <objects>
-                <viewController storyboardIdentifier="FlipTestViewController" id="zXd-ra-w2p" customClass="FlipTestViewController" customModule="BrainHex" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FileSyncVC" id="zXd-ra-w2p" customClass="FileSyncVC" customModule="BrainHex" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3F0-R3-yZn"/>
                         <viewControllerLayoutGuide type="bottom" id="nMc-AC-YlH"/>
@@ -171,54 +171,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mve-OP-C2e">
-                                <rect key="frame" x="67" y="20" width="240" height="240"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="front" translatesAutoresizingMaskIntoConstraints="NO" id="2x1-L3-Kcj">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="240"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="Vaa-eK-Jy1">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="240"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHW-7r-ufU">
+                                <rect key="frame" x="0.0" y="94" width="375" height="88"/>
+                                <color key="backgroundColor" red="0.40000000000000002" green="0.77647058820000003" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="5wh-Qm-guK"/>
-                                    <constraint firstItem="2x1-L3-Kcj" firstAttribute="top" secondItem="Mve-OP-C2e" secondAttribute="top" id="9hF-Gk-keQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="Vaa-eK-Jy1" secondAttribute="bottom" id="F2q-Nh-i9i"/>
-                                    <constraint firstItem="Vaa-eK-Jy1" firstAttribute="leading" secondItem="Mve-OP-C2e" secondAttribute="leading" id="Lht-NX-eQk"/>
-                                    <constraint firstItem="2x1-L3-Kcj" firstAttribute="leading" secondItem="Mve-OP-C2e" secondAttribute="leading" id="Mp2-cq-GRs"/>
-                                    <constraint firstItem="Vaa-eK-Jy1" firstAttribute="top" secondItem="Mve-OP-C2e" secondAttribute="top" id="O8x-ej-U6R"/>
-                                    <constraint firstAttribute="trailing" secondItem="Vaa-eK-Jy1" secondAttribute="trailing" id="XBB-p2-nC1"/>
-                                    <constraint firstAttribute="trailing" secondItem="2x1-L3-Kcj" secondAttribute="trailing" id="jIF-dF-3jF"/>
-                                    <constraint firstAttribute="width" secondItem="Mve-OP-C2e" secondAttribute="height" multiplier="1:1" id="nam-3Z-cAk"/>
-                                    <constraint firstAttribute="bottom" secondItem="2x1-L3-Kcj" secondAttribute="bottom" id="qXd-g4-jXN"/>
+                                    <constraint firstAttribute="height" constant="88" id="Hfj-Eo-GKV"/>
                                 </constraints>
-                            </view>
+                                <fontDescription key="fontDescription" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="30"/>
+                                <state key="normal" title="Start"/>
+                                <state key="selected" title="Done"/>
+                                <connections>
+                                    <action selector="handleButton:" destination="zXd-ra-w2p" eventType="touchUpInside" id="UCf-2p-Hs7"/>
+                                    <action selector="handleRefreshButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nWx-AM-SAa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Mve-OP-C2e" firstAttribute="centerX" secondItem="5sr-u1-ocB" secondAttribute="centerX" id="9YB-ay-1J7"/>
-                            <constraint firstItem="Mve-OP-C2e" firstAttribute="top" secondItem="3F0-R3-yZn" secondAttribute="bottom" id="IsY-0Y-vDs"/>
+                            <constraint firstItem="HHW-7r-ufU" firstAttribute="top" secondItem="3F0-R3-yZn" secondAttribute="bottom" constant="74" id="5xj-HV-iGA"/>
+                            <constraint firstAttribute="trailing" secondItem="HHW-7r-ufU" secondAttribute="trailing" id="gYE-th-EgC"/>
+                            <constraint firstItem="HHW-7r-ufU" firstAttribute="leading" secondItem="5sr-u1-ocB" secondAttribute="leading" id="t3m-xm-9aV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Po5-t4-aZs">
-                        <barButtonItem key="leftBarButtonItem" title="Stop" id="dgy-Dn-hiD">
-                            <connections>
-                                <action selector="handleStopButton:" destination="zXd-ra-w2p" id="dcf-Ye-BXW"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Flip" id="NVW-TB-1WK">
-                            <connections>
-                                <action selector="handleFlipButton:" destination="zXd-ra-w2p" id="6JG-kt-5zW"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Stop" id="dgy-Dn-hiD"/>
+                        <barButtonItem key="rightBarButtonItem" title="Flip" id="NVW-TB-1WK"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="fImageBack" destination="Vaa-eK-Jy1" id="3Dd-Kt-K5Z"/>
-                        <outlet property="fImageViewFront" destination="2x1-L3-Kcj" id="kSg-wS-Q6E"/>
-                        <outlet property="fView" destination="Mve-OP-C2e" id="zId-WM-CeZ"/>
+                        <outlet property="btnStatus" destination="HHW-7r-ufU" id="6wk-Vg-5Uy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mXS-lq-jkB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -267,8 +248,6 @@
     </scenes>
     <resources>
         <image name="1.jpg" width="16" height="16"/>
-        <image name="back" width="240" height="240"/>
         <image name="cardBack" width="240" height="240"/>
-        <image name="front" width="240" height="240"/>
     </resources>
 </document>

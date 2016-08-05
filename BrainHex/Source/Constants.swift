@@ -13,7 +13,7 @@ enum HxFlickr: String{
     case secret = "17e1c7eb8e4f96be"
     
     enum Api{
-        //https://api.flickr.com/services/feeds/photos_public.gne?format=json&lang=en-us&tags=dog
+        //https://api.flickr.com/services/feeds/photos_public.gne?format=json&lang=en-us&nojsoncallback=1&tags=dog
         case publicPhoto(format:String, tags: [String])
         
         
@@ -22,7 +22,7 @@ enum HxFlickr: String{
             switch self {
             case .publicPhoto(let format, let tags):
                 let strTags = tags.reduce("", combine: {$0 + "," + $1})
-                str += "photos_public.gne?lang=en-us&tagmode=all&format=\(format)&tags=\(strTags)"
+                str += "photos_public.gne?lang=en-us&nojsoncallback=1&tagmode=all&format=\(format)&tags=\(strTags)"
                 return str
             }
         }

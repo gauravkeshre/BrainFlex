@@ -11,6 +11,7 @@ import Foundation
 // MARK:- Callback Typealias
 
 typealias CompletionCallback    = (status: Bool, result: [GameImage])	-> ()
+typealias APICompletionCallback    = (status: Bool, result: [String]?)	-> ()
 
 
 /// This method will decide which data source to used based on internet connection
