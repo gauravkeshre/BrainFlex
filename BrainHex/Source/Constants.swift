@@ -15,8 +15,6 @@ enum HxFlickr: String{
     enum Api{
         //https://api.flickr.com/services/feeds/photos_public.gne?format=json&lang=en-us&nojsoncallback=1&tags=dog
         case publicPhoto(format:String, tags: [String])
-        
-        
         var url: String{
             var str = "https://api.flickr.com/services/feeds/"
             switch self {
@@ -28,11 +26,6 @@ enum HxFlickr: String{
         }
     }
 }
-
-
-
-
-
 
 struct GameConstants {
     /// Board

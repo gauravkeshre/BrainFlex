@@ -159,53 +159,6 @@
             </objects>
             <point key="canvasLocation" x="2052.5" y="247.5"/>
         </scene>
-        <!--File SyncVC-->
-        <scene sceneID="bgk-4N-EWl">
-            <objects>
-                <viewController storyboardIdentifier="FileSyncVC" id="zXd-ra-w2p" customClass="FileSyncVC" customModule="BrainHex" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3F0-R3-yZn"/>
-                        <viewControllerLayoutGuide type="bottom" id="nMc-AC-YlH"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5sr-u1-ocB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHW-7r-ufU">
-                                <rect key="frame" x="0.0" y="94" width="375" height="88"/>
-                                <color key="backgroundColor" red="0.40000000000000002" green="0.77647058820000003" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="88" id="Hfj-Eo-GKV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="30"/>
-                                <state key="normal" title="Start"/>
-                                <state key="selected" title="Done"/>
-                                <connections>
-                                    <action selector="handleButton:" destination="zXd-ra-w2p" eventType="touchUpInside" id="UCf-2p-Hs7"/>
-                                    <action selector="handleRefreshButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nWx-AM-SAa"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="HHW-7r-ufU" firstAttribute="top" secondItem="3F0-R3-yZn" secondAttribute="bottom" constant="74" id="5xj-HV-iGA"/>
-                            <constraint firstAttribute="trailing" secondItem="HHW-7r-ufU" secondAttribute="trailing" id="gYE-th-EgC"/>
-                            <constraint firstItem="HHW-7r-ufU" firstAttribute="leading" secondItem="5sr-u1-ocB" secondAttribute="leading" id="t3m-xm-9aV"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Po5-t4-aZs">
-                        <barButtonItem key="leftBarButtonItem" title="Stop" id="dgy-Dn-hiD"/>
-                        <barButtonItem key="rightBarButtonItem" title="Flip" id="NVW-TB-1WK"/>
-                    </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="btnStatus" destination="HHW-7r-ufU" id="6wk-Vg-5Uy"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mXS-lq-jkB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="628" y="265"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="6ww-df-T5M">
             <objects>
@@ -225,25 +178,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l2O-qK-4Gf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1056.5" y="281.5"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="kIz-98-nuq">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="E5N-1w-SmN" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mhb-wr-Ivn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="zXd-ra-w2p" kind="relationship" relationship="rootViewController" id="h0h-mr-65o"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dxr-5h-q6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-184" y="265"/>
         </scene>
     </scenes>
     <resources>

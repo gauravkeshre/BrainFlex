@@ -1,4 +1,4 @@
-//
+ //
 //  OnlineDataSource.swift
 //  BrainHex
 //
@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import FlickrKit
 class OfflineDataSource: DataSourceProtocol{
     func fetchPhotos(tags: [String], onCompletion block: CompletionCallback?) {
         var imageArray = [GameImage]()
@@ -54,33 +54,31 @@ class OnlineDataSource: DataSourceProtocol{
         }
     }
     
+    private static var pageNo: Int = 2
     func fetchImagesFromFlickr(onCompletion: APICompletionCallback){
-        //        let string = "https://api.flickr.com/services/feeds/photos_public.gne?lang=en-us&tagmode=all&format=json&tags=sun&nojsoncallback=1"
-        let string = "http://www.json-generator.com/api/json/get/bQeQvTNqTC"
+        FlickrKit.sharedFlickrKit().initializeWithAPIKey(HxFlickr.key.rawValue, sharedSecret: HxFlickr.secret.rawValue)
+        let flickrInteresting = FKFlickrInterestingnessGetList()
         
-        //        let string = "https://api.flickr.com/services/feeds/photos_public.gne?format=json&lang=en-us&nojsoncallback=1&tags=dog"
         
-        guard let url =  NSURL(string: string) else{
-            onCompletion(status: false, result: nil)
-            return;
-        }
+        flickrInteresting.page = "\(OnlineDataSource.pageNo)"
+        flickrInteresting.per_page = "10"
+        OnlineDataSource.pageNo += 1 // increment
         
-        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, err) in
-            print(err)
-            do{
-                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary
-                print("json")
-                guard let items = json?["items"] as? [[String: AnyObject]] else{
+        var photoURLs = [String]()
+        FlickrKit.sharedFlickrKit().call(flickrInteresting, maxCacheAge: FKDUMaxAgeNeverCache) { (fResponse, error) -> Void in
+            /// No errors
+            guard error == nil,
+                let response = fResponse else{
                     onCompletion(status: false, result: nil)
                     return
-                }
-                
-                let arr = items.flatMap({$0["media"]?["m"] as? String})
-                onCompletion(status: true, result: arr)
-            }catch {
-                print("exception: ")
             }
-            }.resume()
+            let topPhotos = response["photos"] as! [String: AnyObject]
+            let photoArray = topPhotos["photo"] as! [[String: AnyObject]]
+            for photoDictionary in photoArray {
+                let photoURL = FlickrKit.sharedFlickrKit().photoURLForSize(FKPhotoSizeSmall240, fromPhotoDictionary: photoDictionary)
+                photoURLs.append(photoURL.absoluteString)
+            }
+            onCompletion(status: true, result: photoURLs)
+        }
     }
-    
 }

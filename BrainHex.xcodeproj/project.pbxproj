@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9B1D722CD5D5CBB1097E60D /* Pods_BrainHex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24278DC2B730DF7B183ABF8E /* Pods_BrainHex.framework */; };
 		F4BE20D81D53D20F00547BC7 /* DataSourceSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE20D71D53D20F00547BC7 /* DataSourceSetup.swift */; };
 		F4BE20DA1D53D21F00547BC7 /* DataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE20D91D53D21F00547BC7 /* DataSources.swift */; };
 		F4BE20DC1D53D5CB00547BC7 /* GameImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE20DB1D53D5CB00547BC7 /* GameImage.swift */; };
@@ -24,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24278DC2B730DF7B183ABF8E /* Pods_BrainHex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrainHex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EA4CDA164972ECEE3AF908E /* Pods-BrainHex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrainHex.release.xcconfig"; path = "Pods/Target Support Files/Pods-BrainHex/Pods-BrainHex.release.xcconfig"; sourceTree = "<group>"; };
+		926E35EFEC4613A022B4E16F /* Pods-BrainHex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrainHex.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrainHex/Pods-BrainHex.debug.xcconfig"; sourceTree = "<group>"; };
 		F4BE20D71D53D20F00547BC7 /* DataSourceSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceSetup.swift; sourceTree = "<group>"; };
 		F4BE20D91D53D21F00547BC7 /* DataSources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSources.swift; sourceTree = "<group>"; };
 		F4BE20DB1D53D5CB00547BC7 /* GameImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameImage.swift; sourceTree = "<group>"; };
@@ -47,12 +51,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B1D722CD5D5CBB1097E60D /* Pods_BrainHex.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA8E2E23E3D97FC7E91A3CCD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				926E35EFEC4613A022B4E16F /* Pods-BrainHex.debug.xcconfig */,
+				2EA4CDA164972ECEE3AF908E /* Pods-BrainHex.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E827A7E45EAB22D1FB959F75 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24278DC2B730DF7B183ABF8E /* Pods_BrainHex.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F4BE20D61D53D20F00547BC7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +91,8 @@
 			children = (
 				F4F74F4B1D526DDF00A09BCB /* BrainHex */,
 				F4F74F4A1D526DDF00A09BCB /* Products */,
+				CA8E2E23E3D97FC7E91A3CCD /* Pods */,
+				E827A7E45EAB22D1FB959F75 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,9 +155,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F4F74F5B1D526DDF00A09BCB /* Build configuration list for PBXNativeTarget "BrainHex" */;
 			buildPhases = (
+				873E3AE397577FACAE592472 /* [CP] Check Pods Manifest.lock */,
 				F4F74F451D526DDF00A09BCB /* Sources */,
 				F4F74F461D526DDF00A09BCB /* Frameworks */,
 				F4F74F471D526DDF00A09BCB /* Resources */,
+				578C1D63ED9CA71DC2E462B5 /* [CP] Embed Pods Frameworks */,
+				78C47E4BD8438A28DE0485EF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -189,6 +216,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		578C1D63ED9CA71DC2E462B5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BrainHex/Pods-BrainHex-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		78C47E4BD8438A28DE0485EF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BrainHex/Pods-BrainHex-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		873E3AE397577FACAE592472 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F4F74F451D526DDF00A09BCB /* Sources */ = {
@@ -318,24 +393,26 @@
 		};
 		F4F74F5C1D526DDF00A09BCB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 926E35EFEC4613A022B4E16F /* Pods-BrainHex.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BrainHex/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = hx.research.BrainHex;
+				PRODUCT_BUNDLE_IDENTIFIER = gbx.research.brainhex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		F4F74F5D1D526DDF00A09BCB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EA4CDA164972ECEE3AF908E /* Pods-BrainHex.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BrainHex/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = hx.research.BrainHex;
+				PRODUCT_BUNDLE_IDENTIFIER = gbx.research.brainhex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

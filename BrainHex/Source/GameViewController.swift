@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MBProgressHUD
 enum GameMode{
     case observing
     case guessing
@@ -63,24 +63,29 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.handleRefreshButton(nil)
         
-        ActiveDataSource().fetchPhotos(["dog", "planes"]) { (status, result) in
-            if status{
-                self.startTimer()
-                self.imageArray.appendContentsOf(result)
-                self.collectionView.reloadData()
-            }
-        }
     }
     
     //MARK:- IBAction methods
     @IBAction func handleRefreshButton(sender: AnyObject?) {
-        self.lblTimer?.text = "\(Int(GameConstants.ObservationTime))"
-        self.numberOfTicks = 0
-        self.openAllTiles()
-        self.gameMode = .observing
+        let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        hud.backgroundColor = UIColor.blackColor()
+        self.imageArray.removeAll()
         self.guessedIPs.removeAll()
-        self.startTimer()
+        ActiveDataSource().fetchPhotos(["dog", "planes"]) { (status, result) in
+            hud.hideAnimated(true)
+            if status{
+                self.startTimer()
+                self.imageArray.appendContentsOf(result)
+                self.collectionView.reloadData()
+                self.lblTimer?.text = "\(Int(GameConstants.ObservationTime))"
+                self.numberOfTicks = 0
+                self.openAllTiles()
+                self.gameMode = .observing
+                self.startTimer()
+            }
+        }
     }
 }
 

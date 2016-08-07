@@ -18,12 +18,18 @@ class FileSyncVC {
         }
         self.callback = withCompletion
         
+        
         let group: dispatch_group_t = dispatch_group_create();
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
         let mainQ = dispatch_get_main_queue()
         let folder = NSFileManager.defaultManager().pathInDocumentDirectoryFor("images_gk")
         
         var indx = 0
+        
+        ///Clean the folder first
+        NSFileManager.defaultManager().deleteContentsOfFolder(folder)
+        
+        ///Dipatch Group to download and write the files
         for strImage in arrayOfFileURLS{
             dispatch_group_async(group, queue, {
                 if let data = NSData(contentsOfURL: NSURL(string: strImage)!){
@@ -39,6 +45,7 @@ class FileSyncVC {
             
         }
         
+        ///Dipatch will execute when all files are downloaded and written
         dispatch_group_notify(group, mainQ) {
             let images = arrayOfFileURLS.flatMap({$0.componentsSeparatedByString("=").last})
             if  images.count > 0{
@@ -73,4 +80,17 @@ extension NSFileManager{
         }
         return "\(folderPath)/"
     }
+    
+    public func deleteContentsOfFolder(folderPath: String)
+    {
+        do {
+            let filePaths = try self.contentsOfDirectoryAtPath(folderPath)
+            for filePath in filePaths {
+                try self.removeItemAtPath(folderPath + filePath)
+            }
+        } catch {
+            print("Could not clear temp folder: \(error)")
+        }
+    }
+    
 }
