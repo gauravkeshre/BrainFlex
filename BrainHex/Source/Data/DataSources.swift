@@ -33,21 +33,21 @@ class OnlineDataSource: DataSourceProtocol{
         // once done, call the completion block with an array of local names / paths
         
         self.fetchImagesFromFlickr { (status, result) in
-            guard status, let resultArray = result else{
-                print("error")
-                block?(status: false, result: [GameImage]())
-                return
-            }
-            let arr9 = Array(resultArray[0..<GameConstants.MatrixSize])
-            self.fileSync.startFileDownload(from: arr9, withCompletion: { (status, result) in
-                print("all files stored in : \(result)")
-                
-                for str in arr9{
-                    let img = GameImage(pathOrName: str, isLocal: false, uuid: NSUUID().UUIDString)
-                }
-            })
-            
-            
+//            guard status, let resultArray = result else{
+//                print("error")
+//                block?(status: false, result: [GameImage]())
+//                return
+//            }
+//            let arr9 = Array(resultArray[0..<GameConstants.MatrixSize])
+//            self.fileSync.startFileDownload(from: arr9, withCompletion: { (status, result) in
+//                print("all files stored in : \(result)")
+//                
+//                for str in arr9{
+//                    let img = GameImage(pathOrName: str, isLocal: false, uuid: NSUUID().UUIDString)
+//                }
+//            })
+//            
+//            
             
         }
         
