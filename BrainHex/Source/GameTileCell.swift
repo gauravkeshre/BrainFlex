@@ -35,8 +35,8 @@ class GameTileCell: UICollectionViewCell, DataReceiver {
         guard state != self.state else{
             return // ignore the flip
         }
+        self.state = state
         let onCompletion: ((Bool) -> Void)? = { (finished) in
-            self.state = state
             self.delegate?.gameCellEndFlipAnimation(self)
         }
         
@@ -58,14 +58,12 @@ class GameTileCell: UICollectionViewCell, DataReceiver {
         self.gameData = data
         
         /// Set image
-        if let img = UIImage(named: data.pathOrName) where data.isLocal{
-            self.imgContent.image = img
-        }else if let img = UIImage(contentsOfFile:data.pathOrName) {
-            self.imgContent.image = img
-        }
+        self.imgContent.loadImageWithNameorPath(data.pathOrName, formLocal: data.isLocal)
         
         ///initial setup
         self.state = info
+        //        self.flipCardTo(self.state)
+        //        return
         if self.state == .open{
             self.contentView.bringSubviewToFront(self.imgContent)
         }else{
@@ -73,4 +71,18 @@ class GameTileCell: UICollectionViewCell, DataReceiver {
         }
     }
     
+}
+
+
+
+
+extension UIImageView{
+    func loadImageWithNameorPath(nameOrPath: String, formLocal: Bool){
+        if let img = UIImage(named: nameOrPath) where formLocal{
+            self.image = img
+        }else{
+            let img = UIImage(contentsOfFile:nameOrPath)
+            self.image = img
+        }
+    }
 }

@@ -1,0 +1,6 @@
+framework module Pods_BrainHex {
+  umbrella header "Pods-BrainHex-umbrella.h"
+
+  export *
+  module * { export * }
+}
