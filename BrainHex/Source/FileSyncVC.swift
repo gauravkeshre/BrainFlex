@@ -20,8 +20,9 @@ class FileSyncVC {
         
         
         let group: dispatch_group_t = dispatch_group_create();
+        
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
-               let folder = NSFileManager.defaultManager().pathInDocumentDirectoryFor("images_gk")
+        let folder = NSFileManager.defaultManager().pathInDocumentDirectoryFor("images_gk")
         
         var indx = 0
         
@@ -31,14 +32,16 @@ class FileSyncVC {
         ///Dipatch Group to download and write the files
         for strImage in arrayOfFileURLS{
             dispatch_group_async(group, queue, {
-                if let data = NSData(contentsOfURL: NSURL(string: strImage)!){
-                    let path = "\(folder)down\(indx).jpg"
-                    do{
-                        try data.writeToFile(path, options: .AtomicWrite)
-                        indx += 1
-                    }catch{
-                        print("Failed to Save file on path: \(path)")
-                    }
+                guard let data = NSData(contentsOfURL: NSURL(string: strImage)!) else{
+                    print("Failed to download file : \(strImage)")
+                    return
+                }
+                let path = "\(folder)down\(indx).jpg"
+                do{
+                    try data.writeToFile(path, options: .AtomicWrite)
+                    indx += 1
+                }catch{
+                    print("Failed to Save file on path: \(path)")
                 }
             });
             

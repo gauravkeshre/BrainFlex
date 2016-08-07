@@ -1,25 +1,15 @@
 PODS:
   - FlickrKit (1.0.8)
-  - MBProgressHUD (1.0.0)
+  - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
   - FlickrKit
-  - MBProgressHUD (from `https://github.com/gauravkeshre/MBProgressHUD.git`, branch `interactableSuperView`)
-
-EXTERNAL SOURCES:
-  MBProgressHUD:
-    :branch: interactableSuperView
-    :git: https://github.com/gauravkeshre/MBProgressHUD.git
-
-CHECKOUT OPTIONS:
-  MBProgressHUD:
-    :commit: 33036e09d7e8c6f55dde6a470ee849a7f5d769cc
-    :git: https://github.com/gauravkeshre/MBProgressHUD.git
+  - SVProgressHUD (~> 2.0)
 
 SPEC CHECKSUMS:
   FlickrKit: beadf880a10ccaa2f13666d04112324fe08815e2
-  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: ffbd97d1fcd7e3f84df8dc0be203d5fdfdfa8691
+PODFILE CHECKSUM: b2c2f6db5a04467027d6524c7649d6151a807534
 
 COCOAPODS: 1.0.1

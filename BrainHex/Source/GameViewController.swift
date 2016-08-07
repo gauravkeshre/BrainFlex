@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import MBProgressHUD
+import SVProgressHUD
+
 enum GameMode{
     case observing
     case guessing
@@ -72,10 +73,7 @@ class GameViewController: UIViewController {
                 
                 self.closeAllTiles()
                 
-                ///Pick a random image
-                let randomNum = random() % self.imageArray.count
-                print("Random Index = \(randomNum)")
-                self.randomImage = self.imageArray[randomNum]
+                self.pickAndPrepareRandomPicture()
                 
                 /// Load the image accordingly
                 self.imgHint.loadImageWithNameorPath(self.randomImage.pathOrName, formLocal: self.randomImage.isLocal)
@@ -97,17 +95,15 @@ class GameViewController: UIViewController {
     
     //MARK:- IBAction methods
     @IBAction func handleRefreshButton(sender: AnyObject?) {
-        let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        //        hud.dimBackground = true
         
-        //        self.closeAllTiles()
+        SVProgressHUD.showWithStatus("Fetching New Images...")
         self.imageArray.removeAll()
         self.guessedIPs.removeAll()
         
         ActiveDataSource().fetchPhotos(["dog", "planes"]) { (status, result) in
             
             dispatch_async(dispatch_get_main_queue(),{
-                hud.hideAnimated(true)
+                SVProgressHUD.dismiss()
                 if status{
                     self.imageArray.appendContentsOf(result)
                     self.collectionView.reloadData()
@@ -120,6 +116,18 @@ class GameViewController: UIViewController {
                 }
             })
         }
+    }
+    
+    //MARK:- Conv methods
+    
+    private func pickAndPrepareRandomPicture(){
+        ///Pick a random image
+        let randomNum = Int( arc4random_uniform(UInt32(self.imageArray.count)))
+        
+        //            arc4random_uniform(self.imageArray.count)
+        print("Random Index = \(randomNum)")
+        self.randomImage = self.imageArray[randomNum]
+        
     }
 }
 
