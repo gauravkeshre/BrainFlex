@@ -33,27 +33,25 @@ class OnlineDataSource: DataSourceProtocol{
         // once done, call the completion block with an array of local names / paths
         
         self.fetchImagesFromFlickr { (status, result) in
-//            guard status, let resultArray = result else{
-//                print("error")
-//                block?(status: false, result: [GameImage]())
-//                return
-//            }
-//            let arr9 = Array(resultArray[0..<GameConstants.MatrixSize])
-//            self.fileSync.startFileDownload(from: arr9, withCompletion: { (status, result) in
-//                print("all files stored in : \(result)")
-//                
-//                for str in arr9{
-//                    let img = GameImage(pathOrName: str, isLocal: false, uuid: NSUUID().UUIDString)
-//                }
-//            })
-//            
-//            
+            guard status, let resultArray = result else{
+                print("error")
+                block?(status: false, result: [GameImage]())
+                return
+            }
             
+            let arr9 = Array(resultArray[0..<GameConstants.MatrixSize]) // pick only 9 images
+            var imageArray = [GameImage]()
+            self.fileSync.startFileDownload(from: arr9, withCompletion: { (status, result) in
+                print("all files stored in : \(result)")
+                let folder = NSFileManager.defaultManager().pathInDocumentDirectoryFor("images_gk")
+                for i in 0 ..< GameConstants.MatrixSize{
+                    let path = "\(folder)down\(i).jpg"
+                    let img = GameImage(pathOrName: path, isLocal: false, uuid: NSUUID().UUIDString)
+                    imageArray.append(img)
+                }
+                block?(status: true, result: imageArray)
+            })
         }
-        
-        
-        
-        
     }
     
     func fetchImagesFromFlickr(onCompletion: APICompletionCallback){
@@ -61,6 +59,7 @@ class OnlineDataSource: DataSourceProtocol{
         let string = "http://www.json-generator.com/api/json/get/bQeQvTNqTC"
         
         //        let string = "https://api.flickr.com/services/feeds/photos_public.gne?format=json&lang=en-us&nojsoncallback=1&tags=dog"
+        
         guard let url =  NSURL(string: string) else{
             onCompletion(status: false, result: nil)
             return;

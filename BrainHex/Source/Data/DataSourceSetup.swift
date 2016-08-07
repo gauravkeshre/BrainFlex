@@ -31,7 +31,7 @@ func ActiveDataSource()-> DataSourceProtocol{
  */
 func isConnectedToInternet() -> Bool
 {
-    return false
+    return true
 }
 
 

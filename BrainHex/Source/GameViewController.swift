@@ -46,7 +46,7 @@ class GameViewController: UIViewController {
             case .observing:
                 bottomBarHeightConstraint.active = true
             case .guessing:
-                let randomNum = random() % GameConstants.MatrixSize
+                let randomNum = random() % self.imageArray.count
                 print("Random Index = \(randomNum)")
                 self.randomImage = self.imageArray[randomNum]
                 self.imgHint.image = UIImage(named: self.randomImage.pathOrName)
@@ -63,9 +63,10 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.startTimer()
+        
         ActiveDataSource().fetchPhotos(["dog", "planes"]) { (status, result) in
             if status{
+                self.startTimer()
                 self.imageArray.appendContentsOf(result)
                 self.collectionView.reloadData()
             }

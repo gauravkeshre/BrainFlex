@@ -59,7 +59,6 @@
 				F4BE20D71D53D20F00547BC7 /* DataSourceSetup.swift */,
 				F4BE20D91D53D21F00547BC7 /* DataSources.swift */,
 				F4BE20DB1D53D5CB00547BC7 /* GameImage.swift */,
-				F4DEEC201D548EC600B9D760 /* FileSyncVC.swift */,
 			);
 			name = Model;
 			path = Source/Data;
@@ -96,16 +95,33 @@
 		F4F74F601D52715000A09BCB /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F4FB03571D57173F00538B40 /* Managers */,
+				F4FB03561D57171D00538B40 /* Controller */,
 				F4BE20D61D53D20F00547BC7 /* Model */,
 				F4F74F611D52752C00A09BCB /* Constants.swift */,
 				F4F74F651D52899F00A09BCB /* Protocols.swift */,
-				F4F74F4C1D526DDF00A09BCB /* AppDelegate.swift */,
-				F4F74F5E1D52714C00A09BCB /* GameViewController.swift */,
-				F4BE20DD1D53E81900547BC7 /* GameViewController+Shake.swift */,
-				F4BE20DF1D53E8E600547BC7 /* GameViewController+Cosmetic.swift */,
 				F4F74F631D52814D00A09BCB /* GameTileCell.swift */,
 			);
 			name = Source;
+			sourceTree = "<group>";
+		};
+		F4FB03561D57171D00538B40 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F4F74F5E1D52714C00A09BCB /* GameViewController.swift */,
+				F4BE20DD1D53E81900547BC7 /* GameViewController+Shake.swift */,
+				F4BE20DF1D53E8E600547BC7 /* GameViewController+Cosmetic.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		F4FB03571D57173F00538B40 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F4DEEC201D548EC600B9D760 /* FileSyncVC.swift */,
+				F4F74F4C1D526DDF00A09BCB /* AppDelegate.swift */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

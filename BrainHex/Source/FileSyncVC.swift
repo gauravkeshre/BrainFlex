@@ -10,30 +10,33 @@ typealias DownloadCompletionCallback = (status: Bool, result: [String]?) -> ()
 
 import Foundation
 class FileSyncVC {
-    let callback: DownloadCompletionCallback? = nil
+    var callback: DownloadCompletionCallback? = nil
     
     func startFileDownload(from arrayOfFileURLS: [String], withCompletion: DownloadCompletionCallback){
         guard arrayOfFileURLS.count > 0 else{
             return
         }
+        self.callback = withCompletion
+        
         let group: dispatch_group_t = dispatch_group_create();
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
         let mainQ = dispatch_get_main_queue()
         let folder = NSFileManager.defaultManager().pathInDocumentDirectoryFor("images_gk")
         
+        var indx = 0
         for strImage in arrayOfFileURLS{
             dispatch_group_async(group, queue, {
                 if let data = NSData(contentsOfURL: NSURL(string: strImage)!){
-                    let name = strImage.componentsSeparatedByString("=").last!
-                    let path = "\(folder)\(name).jpg"
-                    
+                    let path = "\(folder)down\(indx).jpg"
                     do{
                         try data.writeToFile(path, options: .AtomicWrite)
+                        indx += 1
                     }catch{
                         print("Failed to Save file on path: \(path)")
                     }
                 }
             });
+            
         }
         
         dispatch_group_notify(group, mainQ) {
