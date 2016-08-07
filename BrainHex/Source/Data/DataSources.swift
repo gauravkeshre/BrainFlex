@@ -1,14 +1,14 @@
  //
-//  OnlineDataSource.swift
-//  BrainHex
-//
-//  Created by Gaurav on 05/08/16.
-//  Copyright © 2016 Gaurav Keshre. All rights reserved.
-//
-
-import Foundation
-import FlickrKit
-class OfflineDataSource: DataSourceProtocol{
+ //  OnlineDataSource.swift
+ //  BrainHex
+ //
+ //  Created by Gaurav on 05/08/16.
+ //  Copyright © 2016 Gaurav Keshre. All rights reserved.
+ //
+ 
+ import Foundation
+ import FlickrKit
+ class OfflineDataSource: DataSourceProtocol{
     func fetchPhotos(tags: [String], onCompletion block: CompletionCallback?) {
         var imageArray = [GameImage]()
         for i in 0...GameConstants.MatrixSize - 1  {
@@ -18,10 +18,10 @@ class OfflineDataSource: DataSourceProtocol{
         block?(status: true, result: imageArray)
         
     }
-}
-
-
-class OnlineDataSource: DataSourceProtocol{
+ }
+ 
+ 
+ class OnlineDataSource: DataSourceProtocol{
     
     let fileSync = FileSyncVC()
     func fetchPhotos(tags: [String], onCompletion block: CompletionCallback?) {
@@ -42,11 +42,11 @@ class OnlineDataSource: DataSourceProtocol{
             let arr9 = Array(resultArray[0..<GameConstants.MatrixSize]) // pick only 9 images
             var imageArray = [GameImage]()
             self.fileSync.startFileDownload(from: arr9, withCompletion: { (status, result) in
-                print("all files stored in : \(result)")
                 let folder = NSFileManager.defaultManager().pathInDocumentDirectoryFor("images_gk")
                 for i in 0 ..< GameConstants.MatrixSize{
                     let path = "\(folder)down\(i).jpg"
                     let img = GameImage(pathOrName: path, isLocal: false, uuid: NSUUID().UUIDString)
+                    
                     imageArray.append(img)
                 }
                 block?(status: true, result: imageArray)
@@ -81,4 +81,4 @@ class OnlineDataSource: DataSourceProtocol{
             onCompletion(status: true, result: photoURLs)
         }
     }
-}
+ }

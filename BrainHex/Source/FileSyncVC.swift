@@ -21,8 +21,7 @@ class FileSyncVC {
         
         let group: dispatch_group_t = dispatch_group_create();
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
-        let mainQ = dispatch_get_main_queue()
-        let folder = NSFileManager.defaultManager().pathInDocumentDirectoryFor("images_gk")
+               let folder = NSFileManager.defaultManager().pathInDocumentDirectoryFor("images_gk")
         
         var indx = 0
         
@@ -46,10 +45,9 @@ class FileSyncVC {
         }
         
         ///Dipatch will execute when all files are downloaded and written
-        dispatch_group_notify(group, mainQ) {
-            let images = arrayOfFileURLS.flatMap({$0.componentsSeparatedByString("=").last})
-            if  images.count > 0{
-                self.callback?(status: true, result: images)
+        dispatch_group_notify(group, queue) {
+            if  arrayOfFileURLS.count > 0{
+                self.callback?(status: true, result: arrayOfFileURLS)
             }else{
                 self.callback?(status: false, result: nil)
             }
@@ -62,7 +60,6 @@ class FileSyncVC {
 extension NSFileManager{
     var pathToDocumentDirectoryOrTempDirectory: String{
         guard let docDirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first else{
-            print("Returning NSTemporaryDirectory() when asked for pathForReactJSFiles. There is some serious problem here!")
             return NSTemporaryDirectory()
         }
         return docDirPath
@@ -74,7 +71,6 @@ extension NSFileManager{
             do{
                 try self.createDirectoryAtPath(folderPath, withIntermediateDirectories: true, attributes: nil)
             }catch{
-                print("Returning NSTemporaryDirectory() when asked for pathForReactJSFiles. There is some serious problem here!")
                 return NSTemporaryDirectory()
             }
         }

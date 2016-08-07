@@ -1,12 +1,10 @@
 PODS:
   - FlickrKit (1.0.8)
   - MBProgressHUD (1.0.0)
-  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - FlickrKit
   - MBProgressHUD (from `https://github.com/gauravkeshre/MBProgressHUD.git`, branch `interactableSuperView`)
-  - SwiftyJSON (~> 2.3)
 
 EXTERNAL SOURCES:
   MBProgressHUD:
@@ -21,8 +19,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   FlickrKit: beadf880a10ccaa2f13666d04112324fe08815e2
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 6c0cec1b501186646e491d5502b911434c07aa44
+PODFILE CHECKSUM: ffbd97d1fcd7e3f84df8dc0be203d5fdfdfa8691
 
 COCOAPODS: 1.0.1
