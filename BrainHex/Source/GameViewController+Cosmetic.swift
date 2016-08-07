@@ -19,9 +19,15 @@ extension GameViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("GameTileCell", forIndexPath: indexPath) as! GameTileCell
-        cell.setData(self.imageArray[indexPath.row], info: .open)
+        
         cell.delegate = self
         return cell
+    }
+    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        
+        if let gtCell = cell as? GameTileCell{
+            gtCell.setData(self.imageArray[indexPath.row], info: .open)
+        }
     }
     
     func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -52,20 +58,24 @@ extension GameViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         if self.randomImage.uuid == cell.gameData.uuid{
             print("WIN !!")
-            self.gameMode = .ended
+            
             let score = GameConstants.MatrixSize - self.guessedIPs.count
             let alert = UIAlertController(title: "Congratulations! You Won 🎉", message: "Yes this is the right match. Your score is \(score) Points", preferredStyle: .Alert)
             
             let action = UIAlertAction(title: "Play again 💙", style: .Default, handler: { (action) in
+                
                 self.handleRefreshButton(action)
             })
             alert.addAction(action)
             
-            self.presentViewController(alert, animated: true, completion:nil)        }
+            self.presentViewController(alert, animated: true, completion:nil)
+            self.gameMode = .ended
+        }
         
         
         self.guessedIPs.append(indexPath)
     }
+    
     
     //MARK:- Convenience methods
     internal func closeAllTiles(){
