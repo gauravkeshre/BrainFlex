@@ -12,9 +12,7 @@
 @property (nonatomic, strong, readonly) NSString *photoID;
 @property (nonatomic, strong, readonly) NSError *error;
 
-- (instancetype) init NS_UNAVAILABLE;
-
-- (instancetype) initWithData:(NSData *)data NS_DESIGNATED_INITIALIZER;
+- (id) initWithData:(NSData *)data;
 
 - (BOOL) parse;
 

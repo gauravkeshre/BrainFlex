@@ -18,7 +18,7 @@
 
 @implementation FKUploadRespone
 
-- (instancetype) initWithData:(NSData *)data {
+- (id) initWithData:(NSData *)data {
     self = [super init];
     if (self) {
         self.data = data;
@@ -44,17 +44,17 @@
 	self.currentElementContent = nil;
 	
 	if ([elementName isEqualToString:@"rsp"]) {
-		NSString *status = attributeDict[@"stat"];
+		NSString *status = [attributeDict objectForKey:@"stat"];
 		if ([status isEqualToString:@"ok"]) {
 		} else if ([status isEqualToString:@"fail"]) {
 		}
 	}
 	
 	if ([elementName isEqualToString:@"err"]) {
-		NSString *errorCodeString = attributeDict[@"code"];
-		NSString *errorDescription = attributeDict[@"msg"];
+		NSString *errorCodeString = [attributeDict objectForKey:@"code"];
+		NSString *errorDescription = [attributeDict objectForKey:@"msg"];
 		
-		NSInteger errorCode = errorCodeString.integerValue;
+		NSInteger errorCode = [errorCodeString integerValue];
 		NSDictionary *userInfo = @{NSLocalizedDescriptionKey: errorDescription};
 		NSError *error = [NSError errorWithDomain:FKFlickrAPIErrorDomain code:errorCode userInfo:userInfo];
 		self.error = error;

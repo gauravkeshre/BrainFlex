@@ -14,12 +14,8 @@
 
 @interface FKFlickrNetworkOperation : FKDUNetworkOperation
 
-- (instancetype) init NS_UNAVAILABLE;
+- (id) initWithAPIMethod:(NSString *)api arguments:(NSDictionary *)args maxAgeMinutes:(FKDUMaxAge)maxAge diskCache:(id<FKDUDiskCache>)diskCache completion:(FKAPIRequestCompletion)completion;
 
-- (instancetype) initWithURL:(NSURL *)url NS_UNAVAILABLE;
-
-- (instancetype) initWithAPIMethod:(NSString *)api arguments:(NSDictionary *)args maxAgeMinutes:(FKDUMaxAge)maxAge diskCache:(id<FKDUDiskCache>)diskCache completion:(FKAPIRequestCompletion)completion NS_DESIGNATED_INITIALIZER;
-
-- (instancetype) initWithAPIMethod:(id<FKFlickrAPIMethod>)method maxAgeMinutes:(FKDUMaxAge)maxAge diskCache:(id<FKDUDiskCache>)diskCache completion:(FKAPIRequestCompletion)completion;
+- (id) initWithAPIMethod:(id<FKFlickrAPIMethod>)method maxAgeMinutes:(FKDUMaxAge)maxAge diskCache:(id<FKDUDiskCache>)diskCache completion:(FKAPIRequestCompletion)completion;
 
 @end

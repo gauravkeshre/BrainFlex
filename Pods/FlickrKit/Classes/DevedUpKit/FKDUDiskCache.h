@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 
 //You can use these as convenience and readability instead of passing a number in maxAgeMinutes
-typedef NS_ENUM(unsigned long, FKDUMaxAge) {
+typedef enum {
 	FKDUMaxAgeNeverCache	= 0,
     FKDUMaxAgeOneMinute		= 1,
     FKDUMaxAgeFiveMinutes	= 5,
@@ -18,7 +18,7 @@ typedef NS_ENUM(unsigned long, FKDUMaxAge) {
     FKDUMaxAgeHalfDay		= 720,
     FKDUMaxAgeOneDay		= 1440,
     FKDUMaxAgeInfinite		= NSIntegerMax
-};
+} FKDUMaxAge;
 
 @protocol FKDUDiskCache <NSObject>
 

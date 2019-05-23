@@ -15,7 +15,7 @@
 
 @implementation FKDUConcurrentOperation
 
-- (instancetype) init {
+- (id) init {
     self = [super init];
     if (self) {
         _isOperationExecuting = NO;
@@ -39,7 +39,7 @@
 }
 
 - (void) start {    
-    if (self.cancelled) {
+    if ([self isCancelled]) {
         // Must move the operation to the finished state if it is canceled.
         [self finish];
         return; 

@@ -12,14 +12,10 @@
 @interface FKImageUploadNetworkOperation : FKDUNetworkOperation
 @property (nonatomic, assign, readonly) CGFloat uploadProgress;
 
-- (instancetype) init NS_UNAVAILABLE;
-
-- (instancetype) initWithURL:(NSURL *)url NS_UNAVAILABLE;
-
-- (instancetype) initWithImage:(DUImage *)image arguments:(NSDictionary *)args completion:(FKAPIImageUploadCompletion)completion NS_DESIGNATED_INITIALIZER;
+- (id) initWithImage:(DUImage *)image arguments:(NSDictionary *)args completion:(FKAPIImageUploadCompletion)completion;
 
 #if TARGET_OS_IOS
-- (instancetype) initWithAssetURL:(NSURL *)assetURL arguments:(NSDictionary *)args completion:(FKAPIImageUploadCompletion)completion NS_DESIGNATED_INITIALIZER;
+- (id) initWithAssetURL:(NSURL *)assetURL arguments:(NSDictionary *)args completion:(FKAPIImageUploadCompletion)completion;
 #endif
 
 @end

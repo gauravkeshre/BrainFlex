@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 DevedUp Ltd. All rights reserved. http://www.devedup.com
 //
 
-typedef NS_ENUM(unsigned int, FKHttpMethod) {
+typedef enum {
 	FKHttpMethodGET = 0,
 	FKHttpMethodPOST
-};
+} FKHttpMethod;
 
 @interface FKURLBuilder : NSObject
 

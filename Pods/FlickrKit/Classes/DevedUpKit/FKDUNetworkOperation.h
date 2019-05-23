@@ -17,10 +17,7 @@ typedef void (^FKDUNetworkCompletion)(NSURLResponse *response, NSData *data, NSE
 @property (nonatomic, strong, readonly) NSMutableURLRequest *request;
 @property (nonatomic, strong, readonly) NSHTTPURLResponse *response;
 
-
-- (instancetype) init NS_DESIGNATED_INITIALIZER;
-
-- (instancetype) initWithURL:(NSURL *)url NS_DESIGNATED_INITIALIZER;
+- (id) initWithURL:(NSURL *)url;
 
 - (void) sendAsyncRequestOnCompletion:(FKDUNetworkCompletion)completion;
 

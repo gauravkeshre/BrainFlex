@@ -6,21 +6,17 @@
 //  Copyright (c) 2013 DevedUp Ltd. All rights reserved. http://www.devedup.com
 //
 
+typedef void (^FKAPIImageUploadCompletion)(NSString *imageID, NSError *error);
+typedef void (^FKAPIRequestCompletion)(NSDictionary *response, NSError *error);
+typedef void (^FKAPIAuthBeginCompletion)(NSURL *flickrLoginPageURL, NSError *error);
+typedef void (^FKAPIAuthCompletion)(NSString *userName, NSString *userId, NSString *fullName, NSError *error);
 
-
-typedef void (^FKAPIImageUploadCompletion)(NSString * _Nullable imageID, NSError * _Nullable error);
-typedef void (^FKAPIRequestCompletion)(NSDictionary<NSString *, id> * _Nullable response,  NSError * _Nullable error);
-typedef void (^FKAPIAuthBeginCompletion)(NSURL * _Nullable flickrLoginPageURL, NSError * _Nullable error);
-typedef void (^FKAPIAuthCompletion)(NSString * _Nullable userName, NSString * _Nullable userId, NSString * _Nullable fullName, NSError * _Nullable error);
-
-extern NSString *const _Nonnull FKFlickrKitErrorDomain; // Errors internally from Flickr KIT
-extern NSString *const _Nonnull FKFlickrAPIErrorDomain; // Error originating from Flickr API
-
-NS_ASSUME_NONNULL_BEGIN
+extern NSString *const FKFlickrKitErrorDomain; // Errors internally from Flickr KIT
+extern NSString *const FKFlickrAPIErrorDomain; // Error originating from Flickr API
 
 #pragma mark - Error Codes
 
-typedef NS_ENUM(unsigned int, FKError) {
+typedef enum {
 	FKErrorURLParsing		= 100,
 	FKErrorResponseParsing  = 101,
     FKErrorEmptyResponse    = 102,
@@ -32,13 +28,13 @@ typedef NS_ENUM(unsigned int, FKError) {
 	FKErrorNotAuthorized	= 302,
     
 	FKErrorInvalidArgs      = 400,
-};
+} FKError;
 
 #pragma mark - Flickr API Endpoint
 
 extern NSString *const FKFlickrRESTAPI;
 
-typedef NS_ENUM(unsigned int, FKPhotoSize) {
+typedef enum {
     FKPhotoSizeUnknown = 0,
     FKPhotoSizeCollectionIconLarge,
     FKPhotoSizeBuddyIcon,
@@ -59,13 +55,13 @@ typedef NS_ENUM(unsigned int, FKPhotoSize) {
     FKPhotoSizeVideoSiteMP4,
     FKPhotoSizeVideoMobileMP4,
     FKPhotoSizeVideoPlayer,
-};
+} FKPhotoSize;
 
-typedef NS_ENUM(unsigned int, FKPermission) {
+typedef enum {
 	FKPermissionRead,
 	FKPermissionWrite,
 	FKPermissionDelete
-};
+} FKPermission;
 
 NSString *FKPermissionStringForPermission(FKPermission permission);
 
@@ -79,5 +75,3 @@ typedef UIImage DUImage;
 #else
 typedef NSImage DUImage;
 #endif
-
-NS_ASSUME_NONNULL_END

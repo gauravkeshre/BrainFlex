@@ -28,7 +28,7 @@
 
 #pragma mark - Init
 
-- (instancetype) initWithAPIMethod:(NSString *)api arguments:(NSDictionary *)args maxAgeMinutes:(FKDUMaxAge)maxAge diskCache:(id<FKDUDiskCache>)diskCache completion:(FKAPIRequestCompletion)completion {
+- (id) initWithAPIMethod:(NSString *)api arguments:(NSDictionary *)args maxAgeMinutes:(FKDUMaxAge)maxAge diskCache:(id<FKDUDiskCache>)diskCache completion:(FKAPIRequestCompletion)completion {
 	self = [super init];
     if (self) {
 		self.maxAgeMinutes = maxAge;
@@ -42,7 +42,7 @@
     return self;
 }
 
-- (instancetype) initWithAPIMethod:(id<FKFlickrAPIMethod>)method maxAgeMinutes:(FKDUMaxAge)maxAge diskCache:(id<FKDUDiskCache>)diskCache completion:(FKAPIRequestCompletion)completion {
+- (id) initWithAPIMethod:(id<FKFlickrAPIMethod>)method maxAgeMinutes:(FKDUMaxAge)maxAge diskCache:(id<FKDUDiskCache>)diskCache completion:(FKAPIRequestCompletion)completion {
     NSString *api = [method name];
     NSDictionary *args = [method args];
     return [self initWithAPIMethod:api arguments:args maxAgeMinutes:maxAge diskCache:diskCache completion:completion];
@@ -96,7 +96,7 @@
 
 - (NSString *) generateCacheKey {
     NSMutableString *cacheString = [[NSMutableString alloc] initWithString:self.apiMethod];
-    for (NSString *key in (self.args).allKeys) {
+    for (NSString *key in [self.args allKeys]) {
         NSString *value = [self.args valueForKey:key];
         [cacheString appendString:key];
         [cacheString appendString:value];

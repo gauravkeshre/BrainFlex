@@ -96,7 +96,7 @@ class GameViewController: UIViewController {
     //MARK:- IBAction methods
     @IBAction func handleRefreshButton(_ sender: AnyObject?) {
         
-        SVProgressHUD.showWithStatus("Fetching New Images...")
+        SVProgressHUD.show(withStatus: "Fetching New Images...")
         self.imageArray.removeAll()
         self.guessedIPs.removeAll()
         

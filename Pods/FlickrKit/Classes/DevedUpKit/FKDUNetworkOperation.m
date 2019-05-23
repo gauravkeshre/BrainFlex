@@ -21,15 +21,7 @@
 
 @implementation FKDUNetworkOperation
 
-- (instancetype) init {
-    self = [super init];
-    if (self) {
-        
-    }
-    return self;
-}
-
-- (instancetype) initWithURL:(NSURL *)url {
+- (id) initWithURL:(NSURL *)url {
     self = [super init];
     if (self) {
         self.url = url;
@@ -53,7 +45,7 @@
 }
 
 - (void) start {
-	if (self.cancelled) {
+	if ([self isCancelled]) {
 		// Must move the operation to the finished state if it is canceled.
 		[self finish];
 		return;
@@ -134,10 +126,10 @@
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
-	NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)cachedResponse.response;
+	NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)[cachedResponse response];
     // Look up the cache policy used in our request
-    if(connection.currentRequest.cachePolicy == NSURLRequestUseProtocolCachePolicy) {
-        NSDictionary *headers = httpResponse.allHeaderFields;
+    if([connection currentRequest].cachePolicy == NSURLRequestUseProtocolCachePolicy) {
+        NSDictionary *headers = [httpResponse allHeaderFields];
         NSString *cacheControl = [headers valueForKey:@"Cache-Control"];
         NSString *expires = [headers valueForKey:@"Expires"];
         if((cacheControl == nil) && (expires == nil)) {
@@ -156,7 +148,7 @@
     // redirect, so each time we reset the data.
     
     // receivedData is an instance variable declared elsewhere.
-    (self.receivedData).length = 0;
+    [self.receivedData setLength:0];
     self.response = (NSHTTPURLResponse *) response;
 }
 
