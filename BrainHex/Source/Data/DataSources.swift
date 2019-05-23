@@ -66,7 +66,7 @@
         
         var photoURLs = [String]()
 
-        FlickrKit.shared().call(flickrInteresting, maxCacheAge: .neverCache) { (fResponse, error) -> Void in
+        FlickrKit.shared().call(flickrInteresting, maxCacheAge: FKDUMaxAgeNeverCache) { (fResponse, error) -> Void in
             /// No errors
             guard error == nil,
                 let response = fResponse else{
@@ -76,9 +76,8 @@
             let topPhotos = response["photos"] as! [String: AnyObject]
             let photoArray = topPhotos["photo"] as! [[String: AnyObject]]
             for photoDictionary in photoArray {
-
-                let photoURL = FlickrKit.shared().photoURL(for: .small240, fromPhotoDictionary: photoDictionary)
-                photoURLs.append((photoURL.absoluteString))
+                let photoURL = FlickrKit.shared().photoURL(for: FKPhotoSizeSmall240, fromPhotoDictionary: photoDictionary)
+                photoURLs.append((photoURL?.absoluteString)!)
             }
             onCompletion(true, photoURLs)
         }
