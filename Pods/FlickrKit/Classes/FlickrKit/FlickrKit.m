@@ -128,7 +128,7 @@
     
     FKFlickrNetworkOperation *op = [[FKFlickrNetworkOperation alloc] initWithAPIMethod:method maxAgeMinutes:maxAge diskCache:self.diskCache completion:completion];
 	
-	[[FKDUNetworkController sharedController] execute:op];
+	[[FKDUNetworkController sharedController] execute:op];     
 	return op;
 }
 
@@ -197,7 +197,7 @@
 		return nil;
 	}
 	
-	NSDictionary *paramsDictionary = @{@"oauth_callback": [url absoluteString]};
+	NSDictionary *paramsDictionary = @{@"oauth_callback": url.absoluteString};
 	FKURLBuilder *urlBuilder = [[FKURLBuilder alloc] init];
     NSURL *requestURL = [urlBuilder oauthURLFromBaseURL:[NSURL URLWithString:@"https://www.flickr.com/services/oauth/request_token"] method:FKHttpMethodGET params:paramsDictionary];
 	
@@ -248,7 +248,7 @@
 	NSString *verifier = [result valueForKey:@"oauth_verifier"];
 	
 	if (!result) {
-		NSString *errorString = [NSString stringWithFormat:@"Cannot obtain token/secret from URL: %@", [url absoluteString]];
+		NSString *errorString = [NSString stringWithFormat:@"Cannot obtain token/secret from URL: %@", url.absoluteString];
 		NSDictionary *userInfo = @{NSLocalizedDescriptionKey: errorString};
 		NSError *error = [NSError errorWithDomain:FKFlickrKitErrorDomain code:FKErrorURLParsing userInfo:userInfo];
 		if (completion) {
@@ -387,6 +387,18 @@
 @end
 
 
+#pragma mark - Photo Response
+
+@implementation FlickrKit (PhotoResponse)
+
+- (nullable NSArray<NSDictionary<NSString *, id> *> *) photoArrayFromResponse:(nonnull NSDictionary<NSString *, id> *)response {
+    return [response valueForKeyPath:@"photos.photo"];
+}
+
+@end
+
+
+
 #pragma mark - Image URL Methods
 #pragma mark -
 
@@ -427,7 +439,7 @@
     static NSString *photoSource = @"https://static.flickr.com/";
 	
 	NSMutableString *URLString = [NSMutableString stringWithString:@"https://"];
-	if ([farm length]) {
+	if (farm.length) {
 		[URLString appendFormat:@"farm%@.", farm];
 	}
 	
