@@ -13,29 +13,29 @@ import UIKit
 extension GameViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     
     //MARK: UICollectionViewDataSource methods
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return self.imageArray.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("GameTileCell", forIndexPath: indexPath) as! GameTileCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameTileCell", for: indexPath) as! GameTileCell
         
         cell.delegate = self
         return cell
     }
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         if let gtCell = cell as? GameTileCell{
             gtCell.setData(self.imageArray[indexPath.row], info: .open)
         }
     }
     
-    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         guard !guessedIPs.contains(indexPath) else{
             return false
         }
         
-        guard let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as? GameTileCell else{
+        guard let cell = self.collectionView.cellForItem(at: indexPath) as? GameTileCell else{
             return false // let it go
         }
         ///Allow flip only on closed cells
@@ -43,9 +43,9 @@ extension GameViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     //MARK: UICollectionViewDelegate methods
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as? GameTileCell else{
+        guard let cell = self.collectionView.cellForItem(at: indexPath) as? GameTileCell else{
             return // let it go
         }
         
@@ -60,15 +60,15 @@ extension GameViewController: UICollectionViewDataSource, UICollectionViewDelega
             print("WIN !!")
             
             let score = GameConstants.MatrixSize - self.guessedIPs.count
-            let alert = UIAlertController(title: "Congratulations! You Won 🎉", message: "Yes this is the right match. Your score is \(score) Points", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Congratulations! You Won 🎉", message: "Yes this is the right match. Your score is \(score) Points", preferredStyle: .alert)
             
-            let action = UIAlertAction(title: "Play again 💙", style: .Default, handler: { (action) in
+            let action = UIAlertAction(title: "Play again 💙", style: .default, handler: { (action) in
                 
                 self.handleRefreshButton(action)
             })
             alert.addAction(action)
             
-            self.presentViewController(alert, animated: true, completion:nil)
+            self.present(alert, animated: true, completion:nil)
             self.gameMode = .ended
         }
         
@@ -79,12 +79,12 @@ extension GameViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     //MARK:- Convenience methods
     internal func closeAllTiles(){
-        for cellInLoop in self.collectionView.visibleCells() as! [GameTileCell] {
+        for cellInLoop in self.collectionView.visibleCells as! [GameTileCell] {
             cellInLoop.flipCardTo(.closed)
         }
     }
     internal func openAllTiles(){
-        for cellInLoop in self.collectionView.visibleCells() as! [GameTileCell] {
+        for cellInLoop in self.collectionView.visibleCells as! [GameTileCell] {
             cellInLoop.flipCardTo(.open)
         }
     }
@@ -95,16 +95,16 @@ extension GameViewController: UICollectionViewDataSource, UICollectionViewDelega
 
 //MARK:- GameCellDelegate methods
 extension GameViewController: GameTileCellDelegate{
-    func gameCell(cell: GameTileCell, willToggleStateTo state: GameTileState){
+    func gameCell(_ cell: GameTileCell, willToggleStateTo state: GameTileState){
         
     }
     
-    func gameCellBeginFlipAnimation(cell: GameTileCell){
-        self.collectionView.userInteractionEnabled = false
+    func gameCellBeginFlipAnimation(_ cell: GameTileCell){
+        self.collectionView.isUserInteractionEnabled = false
     }
     
-    func gameCellEndFlipAnimation(cell: GameTileCell){
-        self.collectionView.userInteractionEnabled = true
+    func gameCellEndFlipAnimation(_ cell: GameTileCell){
+        self.collectionView.isUserInteractionEnabled = true
     }
     
 }

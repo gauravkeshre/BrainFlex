@@ -10,8 +10,8 @@ import Foundation
 
 // MARK:- Callback Typealias
 
-typealias CompletionCallback    = (status: Bool, result: [GameImage])	-> ()
-typealias APICompletionCallback    = (status: Bool, result: [String]?)	-> ()
+typealias CompletionCallback    = (_ status: Bool, _ result: [GameImage])	-> ()
+typealias APICompletionCallback    = (_ status: Bool, _ result: [String]?)	-> ()
 
 
 /// This method will decide which data source to used based on internet connection
@@ -41,7 +41,7 @@ func isConnectedToInternet() -> Bool
 
 protocol DataSourceProtocol {
     
-    func fetchPhotos(tags:[String],
+    func fetchPhotos(_ tags:[String],
                      onCompletion block: CompletionCallback?)
     
 }

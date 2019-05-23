@@ -9,13 +9,13 @@
  import Foundation
  import FlickrKit
  class OfflineDataSource: DataSourceProtocol{
-    func fetchPhotos(tags: [String], onCompletion block: CompletionCallback?) {
+    func fetchPhotos(_ tags: [String], onCompletion block: CompletionCallback?) {
         var imageArray = [GameImage]()
         for i in 0...GameConstants.MatrixSize - 1  {
-            let img = GameImage(pathOrName: "\(i)", isLocal: true, uuid: NSUUID().UUIDString)
+            let img = GameImage(pathOrName: "\(i)", isLocal: true, uuid: UUID().uuidString)
             imageArray.append(img)
         }
-        block?(status: true, result: imageArray)
+        block?(true, imageArray)
         
     }
  }
@@ -24,7 +24,7 @@
  class OnlineDataSource: DataSourceProtocol{
     
     let fileSync = FileSyncVC()
-    func fetchPhotos(tags: [String], onCompletion block: CompletionCallback?) {
+    func fetchPhotos(_ tags: [String], onCompletion block: CompletionCallback?) {
         //TODO: - 
         // 1. Fetch the data from Flikr
         // 2. get an array of 9 images
@@ -35,28 +35,28 @@
         self.fetchImagesFromFlickr { (status, result) in
             guard status, let resultArray = result else{
                 print("error")
-                block?(status: false, result: [GameImage]())
+                block?(false, [GameImage]())
                 return
             }
             
             let arr9 = Array(resultArray[0..<GameConstants.MatrixSize]) // pick only 9 images
             var imageArray = [GameImage]()
             self.fileSync.startFileDownload(from: arr9, withCompletion: { (status, result) in
-                let folder = NSFileManager.defaultManager().pathInDocumentDirectoryFor("images_gk")
+                let folder = FileManager.default.pathInDocumentDirectoryFor("images_gk")
                 for i in 0 ..< GameConstants.MatrixSize{
                     let path = "\(folder)down\(i).jpg"
-                    let img = GameImage(pathOrName: path, isLocal: false, uuid: NSUUID().UUIDString)
+                    let img = GameImage(pathOrName: path, isLocal: false, uuid: UUID().uuidString)
                     
                     imageArray.append(img)
                 }
-                block?(status: true, result: imageArray)
+                block?(true, imageArray)
             })
         }
     }
     
-    private static var pageNo: Int = 2
-    func fetchImagesFromFlickr(onCompletion: APICompletionCallback){
-        FlickrKit.sharedFlickrKit().initializeWithAPIKey(HxFlickr.key.rawValue, sharedSecret: HxFlickr.secret.rawValue)
+    fileprivate static var pageNo: Int = 2
+    func fetchImagesFromFlickr(_ onCompletion: @escaping APICompletionCallback){
+        FlickrKit.shared().initialize(withAPIKey: HxFlickr.key.rawValue, sharedSecret: HxFlickr.secret.rawValue)
         let flickrInteresting = FKFlickrInterestingnessGetList()
         
         
@@ -65,20 +65,20 @@
         OnlineDataSource.pageNo += 1 // increment
         
         var photoURLs = [String]()
-        FlickrKit.sharedFlickrKit().call(flickrInteresting, maxCacheAge: FKDUMaxAgeNeverCache) { (fResponse, error) -> Void in
+        FlickrKit.shared().call(flickrInteresting, maxCacheAge: FKDUMaxAgeNeverCache) { (fResponse, error) -> Void in
             /// No errors
             guard error == nil,
                 let response = fResponse else{
-                    onCompletion(status: false, result: nil)
+                    onCompletion(false, nil)
                     return
             }
             let topPhotos = response["photos"] as! [String: AnyObject]
             let photoArray = topPhotos["photo"] as! [[String: AnyObject]]
             for photoDictionary in photoArray {
-                let photoURL = FlickrKit.sharedFlickrKit().photoURLForSize(FKPhotoSizeSmall240, fromPhotoDictionary: photoDictionary)
-                photoURLs.append(photoURL.absoluteString)
+                let photoURL = FlickrKit.shared().photoURL(for: FKPhotoSizeSmall240, fromPhotoDictionary: photoDictionary)
+                photoURLs.append((photoURL?.absoluteString)!)
             }
-            onCompletion(status: true, result: photoURLs)
+            onCompletion(true, photoURLs)
         }
     }
  }

@@ -30,7 +30,7 @@ class GameTileCell: UICollectionViewCell, DataReceiver {
     }
     
     //MARK:- UI methods
-    func flipCardTo(state: GameTileState){
+    func flipCardTo(_ state: GameTileState){
         
         guard state != self.state else{
             return // ignore the flip
@@ -43,17 +43,17 @@ class GameTileCell: UICollectionViewCell, DataReceiver {
         self.delegate?.gameCellBeginFlipAnimation(self);
         switch state {
         case .open:
-            UIView.transitionFromView(self.imgCover, toView: self.imgContent, duration: GameConstants.FlipAnimationDuration, options: [.TransitionFlipFromRight, .ShowHideTransitionViews], completion: onCompletion)
+            UIView.transition(from: self.imgCover, to: self.imgContent, duration: GameConstants.FlipAnimationDuration, options: [.transitionFlipFromRight, .showHideTransitionViews], completion: onCompletion)
             break
         case .closed:
-            UIView.transitionFromView(self.imgContent, toView: self.imgCover, duration: GameConstants.FlipAnimationDuration/2, options: [.TransitionFlipFromLeft, .ShowHideTransitionViews], completion: onCompletion)
+            UIView.transition(from: self.imgContent, to: self.imgCover, duration: GameConstants.FlipAnimationDuration/2, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: onCompletion)
             
             break
         }
     }
     
     //MARK:- DataReceiver methods
-    func setData(data: GameImage, info: GameTileState){
+    func setData(_ data: GameImage, info: GameTileState){
         /// set model
         self.gameData = data
         
@@ -65,9 +65,9 @@ class GameTileCell: UICollectionViewCell, DataReceiver {
         //        self.flipCardTo(self.state)
         //        return
         if self.state == .open{
-            self.contentView.bringSubviewToFront(self.imgContent)
+            self.contentView.bringSubview(toFront: self.imgContent)
         }else{
-            self.contentView.bringSubviewToFront(self.imgCover)
+            self.contentView.bringSubview(toFront: self.imgCover)
         }
     }
     
@@ -77,8 +77,8 @@ class GameTileCell: UICollectionViewCell, DataReceiver {
 
 
 extension UIImageView{
-    func loadImageWithNameorPath(nameOrPath: String, formLocal: Bool){
-        if let img = UIImage(named: nameOrPath) where formLocal{
+    func loadImageWithNameorPath(_ nameOrPath: String, formLocal: Bool){
+        if let img = UIImage(named: nameOrPath), formLocal{
             self.image = img
         }else{
             let img = UIImage(contentsOfFile:nameOrPath)

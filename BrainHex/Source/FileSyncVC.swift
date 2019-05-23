@@ -6,39 +6,39 @@
 //  Copyright © 2016 Gaurav Keshre. All rights reserved.
 //
 
-typealias DownloadCompletionCallback = (status: Bool, result: [String]?) -> ()
+typealias DownloadCompletionCallback = (_ status: Bool, _ result: [String]?) -> ()
 
 import Foundation
 class FileSyncVC {
     var callback: DownloadCompletionCallback? = nil
     
-    func startFileDownload(from arrayOfFileURLS: [String], withCompletion: DownloadCompletionCallback){
+    func startFileDownload(from arrayOfFileURLS: [String], withCompletion: @escaping DownloadCompletionCallback){
         guard arrayOfFileURLS.count > 0 else{
             return
         }
         self.callback = withCompletion
         
         
-        let group: dispatch_group_t = dispatch_group_create();
+        let group: DispatchGroup = DispatchGroup();
         
-        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
-        let folder = NSFileManager.defaultManager().pathInDocumentDirectoryFor("images_gk")
+        let queue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high)
+        let folder = FileManager.default.pathInDocumentDirectoryFor("images_gk")
         
         var indx = 0
         
         ///Clean the folder first
-        NSFileManager.defaultManager().deleteContentsOfFolder(folder)
+        FileManager.default.deleteContentsOfFolder(folder)
         
         ///Dipatch Group to download and write the files
         for strImage in arrayOfFileURLS{
-            dispatch_group_async(group, queue, {
-                guard let data = NSData(contentsOfURL: NSURL(string: strImage)!) else{
+            queue.async(group: group, execute: {
+                guard let data = try? Data(contentsOf: URL(string: strImage)!) else{
                     print("Failed to download file : \(strImage)")
                     return
                 }
                 let path = "\(folder)down\(indx).jpg"
                 do{
-                    try data.writeToFile(path, options: .AtomicWrite)
+                    try data.write(to: URL(fileURLWithPath: path), options: .atomicWrite)
                     indx += 1
                 }catch{
                     print("Failed to Save file on path: \(path)")
@@ -48,11 +48,11 @@ class FileSyncVC {
         }
         
         ///Dipatch will execute when all files are downloaded and written
-        dispatch_group_notify(group, queue) {
+        group.notify(queue: queue) {
             if  arrayOfFileURLS.count > 0{
-                self.callback?(status: true, result: arrayOfFileURLS)
+                self.callback?(true, arrayOfFileURLS)
             }else{
-                self.callback?(status: false, result: nil)
+                self.callback?(false, nil)
             }
         }
     }
@@ -60,19 +60,19 @@ class FileSyncVC {
 
 
 
-extension NSFileManager{
+extension FileManager{
     var pathToDocumentDirectoryOrTempDirectory: String{
-        guard let docDirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first else{
+        guard let docDirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else{
             return NSTemporaryDirectory()
         }
         return docDirPath
     }
-    func pathInDocumentDirectoryFor(folder: String) -> String{
+    func pathInDocumentDirectoryFor(_ folder: String) -> String{
         
-        let folderPath = self.pathToDocumentDirectoryOrTempDirectory.stringByAppendingString("/\(folder)")
-        if !(self.fileExistsAtPath(folderPath)){
+        let folderPath = self.pathToDocumentDirectoryOrTempDirectory + "/\(folder)"
+        if !(self.fileExists(atPath: folderPath)){
             do{
-                try self.createDirectoryAtPath(folderPath, withIntermediateDirectories: true, attributes: nil)
+                try self.createDirectory(atPath: folderPath, withIntermediateDirectories: true, attributes: nil)
             }catch{
                 return NSTemporaryDirectory()
             }
@@ -80,12 +80,12 @@ extension NSFileManager{
         return "\(folderPath)/"
     }
     
-    public func deleteContentsOfFolder(folderPath: String)
+    public func deleteContentsOfFolder(_ folderPath: String)
     {
         do {
-            let filePaths = try self.contentsOfDirectoryAtPath(folderPath)
+            let filePaths = try self.contentsOfDirectory(atPath: folderPath)
             for filePath in filePaths {
-                try self.removeItemAtPath(folderPath + filePath)
+                try self.removeItem(atPath: folderPath + filePath)
             }
         } catch {
             print("Could not clear temp folder: \(error)")

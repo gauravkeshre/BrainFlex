@@ -29,10 +29,10 @@ class GameViewController: UIViewController {
     var imageArray   =  [GameImage]()
     
     
-    private var timer: NSTimer?
+    fileprivate var timer: Timer?
     
     /// Number of ticks
-    private var numberOfTicks: NSTimeInterval = 0
+    fileprivate var numberOfTicks: TimeInterval = 0
     
     /// The randomly picked image info
     var randomImage: GameImage!
@@ -40,7 +40,7 @@ class GameViewController: UIViewController {
     //MARK:- Property Obervers methods
     /// Keep track of all the guessed indexPaths
     
-    var guessedIPs   =  [NSIndexPath](){
+    var guessedIPs   =  [IndexPath](){
         didSet{
             if self.imageArray.count > 0 && self.guessedIPs.count == imageArray.count{
                 self.gameMode = .ended
@@ -52,9 +52,9 @@ class GameViewController: UIViewController {
     var gameMode: GameMode = .observing{
         didSet{
             /// Some UI Updates whenever the game mode changes
-            self.btnReplay?.hidden = (self.gameMode != .ended)
-            self.lblTimer?.hidden = (self.gameMode != .observing)
-            self.imgHint?.hidden = (self.gameMode != .guessing)
+            self.btnReplay?.isHidden = (self.gameMode != .ended)
+            self.lblTimer?.isHidden = (self.gameMode != .observing)
+            self.imgHint?.isHidden = (self.gameMode != .guessing)
             
             switch self.gameMode {
                 
@@ -62,7 +62,7 @@ class GameViewController: UIViewController {
             case .observing:
                 fallthrough
             case .ended:
-                bottomBarHeightConstraint.active = true /// Hide the hint image
+                bottomBarHeightConstraint.isActive = true /// Hide the hint image
                 self.imgHint.image = nil
                 self.guessedIPs.removeAll()
                 self.randomImage = nil
@@ -77,10 +77,10 @@ class GameViewController: UIViewController {
                 
                 /// Load the image accordingly
                 self.imgHint.loadImageWithNameorPath(self.randomImage.pathOrName, formLocal: self.randomImage.isLocal)
-                bottomBarHeightConstraint.active = false
+                bottomBarHeightConstraint.isActive = false
                 
             }
-            UIView.animateWithDuration(0.3, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.view.layoutSubviews()
             })
         }
@@ -94,7 +94,7 @@ class GameViewController: UIViewController {
     }
     
     //MARK:- IBAction methods
-    @IBAction func handleRefreshButton(sender: AnyObject?) {
+    @IBAction func handleRefreshButton(_ sender: AnyObject?) {
         
         SVProgressHUD.showWithStatus("Fetching New Images...")
         self.imageArray.removeAll()
@@ -102,10 +102,10 @@ class GameViewController: UIViewController {
         
         ActiveDataSource().fetchPhotos(["dog", "planes"]) { (status, result) in
             
-            dispatch_async(dispatch_get_main_queue(),{
+            DispatchQueue.main.async(execute: {
                 SVProgressHUD.dismiss()
                 if status{
-                    self.imageArray.appendContentsOf(result)
+                    self.imageArray.append(contentsOf: result)
                     self.collectionView.reloadData()
                     
                     self.lblTimer?.text = "\(Int(GameConstants.ObservationTime))"
@@ -120,7 +120,7 @@ class GameViewController: UIViewController {
     
     //MARK:- Conv methods
     
-    private func pickAndPrepareRandomPicture(){
+    fileprivate func pickAndPrepareRandomPicture(){
         ///Pick a random image
         let randomNum = Int( arc4random_uniform(UInt32(self.imageArray.count)))
         
@@ -135,24 +135,24 @@ class GameViewController: UIViewController {
 //MARK:- Timer methods
 extension GameViewController{
     
-    private func startTimer(){
+    fileprivate func startTimer(){
         guard self.timer == nil else{
             return // timer is running
         }
-        timer = NSTimer(timeInterval: 1,
+        timer = Timer(timeInterval: 1,
                         target: self,
                         selector: #selector(GameViewController.timerTick(_:)),
                         userInfo: nil, repeats: true)
         
-        NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSDefaultRunLoopMode)
+        RunLoop.current.add(timer!, forMode: RunLoopMode.defaultRunLoopMode)
     }
     
-    private func stopTimer(){
+    fileprivate func stopTimer(){
         self.timer?.invalidate()
         self.timer = nil
     }
     
-    func timerTick(timer: NSTimer){
+    func timerTick(_ timer: Timer){
         guard numberOfTicks < GameConstants.ObservationTime - 1 else{
             self.stopTimer()
             self.gameMode = .guessing

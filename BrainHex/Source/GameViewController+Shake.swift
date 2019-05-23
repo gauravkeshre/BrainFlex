@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 extension GameViewController{
     
-    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         self.handleRefreshButton(event)
     }
 }

@@ -11,11 +11,11 @@ import Foundation
 protocol DataReceiver {
     associatedtype DataType
     associatedtype AnotherDataType
-    func setData(data: DataType, info: AnotherDataType)
+    func setData(_ data: DataType, info: AnotherDataType)
 }
 
 protocol GameTileCellDelegate: class {
-    func gameCell(cell: GameTileCell, willToggleStateTo state: GameTileState)
-    func gameCellBeginFlipAnimation(cell: GameTileCell)
-    func gameCellEndFlipAnimation(cell: GameTileCell)
+    func gameCell(_ cell: GameTileCell, willToggleStateTo state: GameTileState)
+    func gameCellBeginFlipAnimation(_ cell: GameTileCell)
+    func gameCellEndFlipAnimation(_ cell: GameTileCell)
 }
