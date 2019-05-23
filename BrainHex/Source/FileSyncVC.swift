@@ -91,5 +91,4 @@ extension FileManager{
             print("Could not clear temp folder: \(error)")
         }
     }
-    
 }
