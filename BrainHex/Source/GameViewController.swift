@@ -2,8 +2,8 @@
 //  GameViewController.swift
 //  BrainHex
 //
-//  Created by Gaurav on 04/08/16.
-//  Copyright © 2016 Gaurav Keshre. All rights reserved.
+//  Created by Manisha Utwal on 04/05/19.
+//  Copyright © 2016 Manisha Utwal. All rights reserved.
 //
 
 import UIKit

@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  BrainHex
 //
-//  Created by Gaurav on 03/08/16.
-//  Copyright © 2016 Gaurav Keshre. All rights reserved.
+//  Created by Manisha Utwal on 03/05/19.
+//  Copyright © 2016 Manisha Utwal. All rights reserved.
 //
 
 
